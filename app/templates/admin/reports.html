@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Admin — Reports — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <h1 class="aa-screen-title" style="font-size:1.45rem;">Open Reports</h1>
+</div>
+
+{% if rows %}
+<div class="d-flex flex-column gap-3">
+    {% for report, target_label, target_user in rows %}
+    <div class="aa-card p-3">
+        <p class="mb-1">
+            <strong style="color:var(--aa-text-hi);">{{ target_label }}</strong>
+            <span class="aa-mono" style="font-size:.72rem;color:var(--aa-muted);"> · reported by {{ report.reporter.username }} on {{ report.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+        </p>
+        <p class="mb-3" style="white-space: pre-wrap;color:var(--aa-muted);">{{ report.reason }}</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <form method="POST" action="{{ url_for('admin.resolve_report', report_id=report.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm">Mark resolved</button>
+            </form>
+            {% if report.target_type in ("memory", "comment") %}
+            <form method="POST" action="{{ url_for('admin.delete_reported_content', report_id=report.id) }}"
+                  onsubmit="return confirm('Delete this content? This cannot be undone.');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-btn aa-btn-sm" style="color:#ff9bb0;border-color:rgba(255,95,174,.4);">Delete content</button>
+            </form>
+            {% endif %}
+            {% if target_user %}
+            {% if target_user.is_active %}
+            <form method="POST" action="{{ url_for('admin.ban_user', user_id=target_user.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-btn aa-btn-sm" style="color:#ff9bb0;border-color:rgba(255,95,174,.4);">Ban {{ target_user.username }}</button>
+            </form>
+            {% else %}
+            <span class="aa-pill align-self-center">{{ target_user.username }} is already banned</span>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No open reports.</p>
+{% endif %}
+</div>
+{% endblock %}

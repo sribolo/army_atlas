@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Log in — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page">
+    <a class="aa-back-btn mb-4" href="{{ url_for('main.index') }}">←</a>
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <div class="aa-mobile-mark aa-brand-mark" style="width:34px;height:34px;border-radius:10px;">
+            <img src="{{ static_url('img/logo.png') }}" alt="">
+        </div>
+        <span class="aa-display fw-bold" style="font-size:.95rem;color:var(--aa-text-hi);">ARMY ATLAS</span>
+    </div>
+
+    <h1 class="aa-screen-title mb-2">Welcome<br>back 💜</h1>
+    <p class="aa-screen-subtitle mb-4">Sign in to your passport & memories.</p>
+
+    <form method="POST" class="aa-app-form" novalidate>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.password) }}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="form-check">
+                {{ form.remember_me(class="form-check-input") }}
+                {{ form.remember_me.label(class="form-check-label") }}
+            </div>
+            <a style="font-size:.82rem;color:var(--aa-lilac);" href="{{ url_for('auth.reset_request') }}">Forgot password?</a>
+        </div>
+        {{ form.submit(class="aa-btn aa-btn-grad") }}
+    </form>
+
+    <p class="mt-auto pt-4 text-center" style="font-size:.86rem;color:var(--aa-muted);">
+        Don't have an account? <a class="fw-bold" href="{{ url_for('auth.register') }}">Sign up free →</a>
+    </p>
+</div>
+{% endblock %}

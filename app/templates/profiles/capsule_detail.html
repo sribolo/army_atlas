@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Time capsule — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page" style="justify-content:flex-start;text-align:center;">
+        <a class="aa-back-btn mb-4" href="{{ url_for('profiles.capsules') }}">←</a>
+        <div class="aa-mobile-mark mx-auto mb-4" style="width:80px;height:80px;border-radius:24px;font-size:2rem;display:flex;align-items:center;justify-content:center;">💌</div>
+        {% if capsule.is_unlocked %}
+        <div class="aa-page-kicker">✓ Unlocked</div>
+        <h1 class="aa-screen-title mb-3">To future me</h1>
+        <p class="text-secondary">Sealed {{ capsule.created_at.strftime('%b %-d, %Y') }}</p>
+        <div class="aa-card p-4 text-start my-4">
+            <p class="aa-quote mb-0" style="white-space: pre-wrap;">{{ capsule.body }}</p>
+        </div>
+        {% else %}
+        <div class="aa-page-kicker">🔒 Still locked</div>
+        <h1 class="aa-screen-title mb-3">Come back later</h1>
+        <p class="text-secondary">Sealed {{ capsule.created_at.strftime('%b %-d, %Y') }}. Unlocks <strong>{{ capsule.unlock_at.strftime('%b %-d, %Y') }}</strong>.</p>
+        <span data-countdown-target="{{ capsule.unlock_at_utc_iso }}">Loading…</span>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('profiles.delete_capsule', capsule_id=capsule.id) }}"
+              onsubmit="return confirm('Delete this capsule? This cannot be undone.');">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm" style="color:#ff9bb0;">Delete capsule</button>
+        </form>
+</div>
+{% endblock %}

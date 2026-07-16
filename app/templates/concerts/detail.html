@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}{{ concert.name }} — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-concert-detail-page">
+    <div class="aa-concert-hero">
+        <img class="aa-concert-hero-banner" src="{{ url_for('static', filename='img/tours/' ~ banner_filename) }}" alt="" aria-hidden="true">
+        <a class="aa-back-btn aa-concert-back" href="{{ url_for('concerts.list_concerts') }}">←</a>
+        <div class="aa-page-kicker">{{ concert.country | flag }} {{ concert.tour.name }}</div>
+        <h1 class="aa-screen-title mb-2">{{ concert.city }}</h1>
+        <p class="aa-screen-subtitle">{{ concert.venue }} · {{ concert.country }}<br>{{ concert.starts_at_local.strftime('%b %-d, %Y') }}</p>
+    </div>
+
+    <div class="aa-concert-detail-body">
+{% if sibling_nights | length > 1 %}
+<div class="d-flex gap-2 mb-3">
+    {% for night in sibling_nights %}
+    <a class="aa-chip" href="{{ url_for('concerts.concert_detail', concert_id=night.id) }}"
+       {% if night.id == concert.id %}style="background:rgba(155,108,255,.28);border-color:rgba(183,148,255,.55);color:var(--aa-text-hi);"{% endif %}>
+        Day {{ loop.index }}<br><strong>{{ night.starts_at_local.strftime('%b %-d') }}</strong>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if concert.is_upcoming %}
+<div class="aa-card p-3 mb-3" style="background:rgba(155,108,255,.08);border-color:rgba(183,148,255,.25);">
+    <div class="aa-label mb-3">⏳ Countdown · {{ concert.starts_at_local.strftime('%b %-d') }}</div>
+    <div class="aa-countdown" data-countdown-target="{{ concert.starts_at_utc_iso }}">
+      <div class="aa-countdown-box"><div class="aa-countdown-num" data-countdown-unit="d">–</div><div class="aa-countdown-label">DAYS</div></div>
+      <div class="aa-countdown-box"><div class="aa-countdown-num" data-countdown-unit="h">–</div><div class="aa-countdown-label">HRS</div></div>
+      <div class="aa-countdown-box accent"><div class="aa-countdown-num" data-countdown-unit="m">–</div><div class="aa-countdown-label">MIN</div></div>
+      <div class="aa-countdown-box"><div class="aa-countdown-num" data-countdown-unit="s">–</div><div class="aa-countdown-label">SEC</div></div>
+    </div>
+</div>
+{% endif %}
+
+<div class="aa-card d-flex text-center py-3 px-2 mb-4">
+    <div class="aa-stat flex-fill"><div class="aa-stat-num">{{ attendee_count }}</div><div class="aa-stat-label">{% if concert.is_upcoming %}going{% else %}attended{% endif %}</div></div>
+    <div class="aa-stat flex-fill"><div class="aa-stat-num">{{ memory_count }}</div><div class="aa-stat-label">memories</div></div>
+    <div class="col-4">
+        {% if current_user.is_authenticated %}
+        {% if user_attending %}
+        <form method="POST" action="{{ url_for('concerts.unattend_concert', concert_id=concert.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm">
+                {% if concert.is_upcoming %}✓ Going — remove{% else %}✓ Attended — remove{% endif %}
+            </button>
+        </form>
+        {% else %}
+        <form method="POST" action="{{ url_for('concerts.attend_concert', concert_id=concert.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="aa-btn aa-btn-grad aa-btn-sm">
+                {% if concert.is_upcoming %}I'm going{% else %}I attended this{% endif %}
+            </button>
+        </form>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+{% if user_attending %}
+<div class="text-center mt-3">
+    <p class="text-secondary mb-2">
+        {% if concert.is_upcoming %}
+        <strong>{{ co_attendee_count }}</strong> other user(s) are going too.
+        {% else %}
+        You attended the same concert as <strong>{{ co_attendee_count }}</strong> other user(s).
+        {% endif %}
+    </p>
+    <form method="POST" action="{{ url_for('concerts.toggle_open_to_connect', concert_id=concert.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm">
+            {% if user_open_to_connect %}✓ Open to connect — turn off{% elif concert.is_upcoming %}Be open to connect with other ARMY going{% else %}Be open to connect with other ARMY who attended{% endif %}
+        </button>
+    </form>
+
+    {% if open_connect_users %}
+    <div class="mt-3">
+        <p class="text-secondary mb-1">
+            {% if concert.is_upcoming %}ARMY who are going and open to connect:{% else %}ARMY who attended and are open to connect:{% endif %}
+        </p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap">
+            {% for user in open_connect_users %}
+            <a class="aa-btn aa-btn-ghost aa-btn-sm" href="{{ url_for('profiles.public_profile', username=user.username) }}">{{ user.username }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<hr class="aa-divider my-4">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="aa-label">Memories from this stop</div>
+    {% if current_user.is_authenticated %}
+    <a class="aa-btn aa-btn-ghost aa-btn-sm" href="{{ url_for('memories.create_memory', concert_id=concert.id) }}">Post</a>
+    {% endif %}
+</div>
+
+{% if memories %}
+<div class="row g-3">
+    {% for memory in memories %}
+    <div class="col-md-6">
+        <a href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}" class="aa-card aa-card-hover d-block overflow-hidden h-100" style="text-decoration:none;">
+            {% if memory.media and memory.media[0].media_type.value == "image" %}
+            <img src="{{ memory.media[0].url }}" alt="" style="width:100%;max-height:200px;object-fit:cover;display:block;">
+            {% endif %}
+            <div class="p-3">
+                <h3 class="h6 mb-1" style="color:var(--aa-text-hi);">
+                    {{ memory.title }}
+                    {% if memory.visibility.value != "public" %}<span class="aa-pill">{{ memory.visibility.value }}</span>{% endif %}
+                </h3>
+                <p class="mb-0" style="font-size:.82rem;color:var(--aa-muted);">by {{ memory.user.username }} &middot; ♡ {{ like_counts.get(memory.id, 0) }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No memories to show yet.</p>
+{% endif %}
+    </div>
+</div>
+{% endblock %}

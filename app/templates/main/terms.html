@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('auth.register') }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">Terms of Service</h1>
+</div>
+
+<div class="aa-card p-4" style="color:var(--aa-text);line-height:1.6;">
+    <p><strong style="color:var(--aa-text-hi);">Welcome to ARMY Atlas!</strong></p>
+    <p style="color:var(--aa-muted);">ARMY Atlas is a fan-made community built to celebrate BTS memories and connect ARMY worldwide. By creating an account, you agree to the following:</p>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Community Guidelines</h2>
+    <p style="color:var(--aa-muted);">Please:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Be respectful and kind to other users.</li>
+        <li>Share only content that you own or have permission to post.</li>
+        <li>Avoid harassment, hate speech, spam, impersonation, or illegal content.</li>
+        <li>Respect the privacy of others.</li>
+    </ul>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Fan Project Disclaimer</h2>
+    <p style="color:var(--aa-muted);">ARMY Atlas is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by BIGHIT MUSIC, HYBE, or BTS.</p>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">User Content</h2>
+    <p style="color:var(--aa-muted);">You remain the owner of the content you post. By uploading content, you grant ARMY Atlas permission to display it within the app so other users can interact with it.</p>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Availability</h2>
+    <p style="color:var(--aa-muted);">Because this is an independent learning project:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Features may change over time.</li>
+        <li>The service may occasionally be unavailable.</li>
+        <li>Accounts or stored data may be reset during development.</li>
+    </ul>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Account Responsibility</h2>
+    <p style="color:var(--aa-muted);">You are responsible for:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Keeping your account secure.</li>
+        <li>Maintaining the confidentiality of your password.</li>
+        <li>Any activity performed using your account.</li>
+    </ul>
+</div>
+</div>
+{% endblock %}

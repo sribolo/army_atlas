@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Time capsules — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <h1 class="aa-screen-title" style="font-size:1.45rem;">Time Capsules</h1>
+</div>
+
+<p class="aa-screen-subtitle mb-4">Seal a private letter to your future self 💜</p>
+
+<a class="aa-ticket-card mb-4" href="{{ url_for('profiles.new_capsule') }}" style="grid-template-columns:62px 1fr auto;background-image:radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px),linear-gradient(135deg,#8b5bff,#d956c8);">
+    <span class="aa-avatar" style="border-radius:16px;background:rgba(255,255,255,.15);font-size:1.5rem;">⏳</span>
+    <span>
+        <span class="aa-list-row-title d-block">Seal a new capsule</span>
+        <span class="aa-list-row-meta" style="color:rgba(255,255,255,.78);">Lock it for 1, 5, or 10 years.</span>
+    </span>
+    <span style="font-size:1.5rem;">+</span>
+</a>
+
+{% if capsules %}
+<div class="aa-list-stack">
+    {% for capsule in capsules %}
+    <a href="{{ url_for('profiles.view_capsule', capsule_id=capsule.id) }}"
+       class="aa-list-row">
+        <span class="aa-avatar" style="border-radius:14px;background:rgba(255,255,255,.08);font-size:1.2rem;">{% if capsule.is_unlocked %}💌{% else %}🔒{% endif %}</span>
+        <span class="flex-fill">
+        <span class="aa-list-row-title d-block">{{ capsule.title if capsule.title is defined and capsule.title else 'To future me' }}</span>
+        {% if capsule.is_unlocked %}
+        <span class="aa-list-row-meta">Unlocked · sealed {{ capsule.created_at.strftime('%b %-d, %Y') }}</span>
+        {% else %}
+        <span class="aa-list-row-meta">Unlocks {{ capsule.unlock_at.strftime('%b %-d, %Y') }} · sealed {{ capsule.created_at.strftime('%b %-d, %Y') }}</span>
+        {% endif %}
+        </span>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No capsules yet. Write a message to your future self.</p>
+{% endif %}
+</div>
+{% endblock %}

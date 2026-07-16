@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}New message — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('messages.inbox') }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">New Message</h1>
+</div>
+
+{% if friends %}
+<div class="aa-page-kicker">Message a friend</div>
+<div class="aa-list-stack">
+    {% for friend in friends %}
+    <a href="{{ url_for('messages.conversation', user_id=friend.id) }}" class="aa-list-row">
+        {% if friend.profile_image_url %}
+        <img src="{{ friend.profile_image_url }}" class="aa-avatar" alt="">
+        {% else %}
+        <span class="aa-avatar aa-avatar-grad">{{ friend.username[0] | upper }}</span>
+        {% endif %}
+        <span class="flex-fill">
+            <span class="aa-list-row-title d-block">{{ friend.username }}</span>
+            <span class="aa-list-row-meta">{% if friend.bias %}Bias: {{ friend.bias }}{% else %}ARMY Atlas{% endif %}</span>
+        </span>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<div class="aa-card text-center py-5 px-4">
+    <p class="mb-3" style="color:var(--aa-muted);">You can only message friends. Add some friends first to start a conversation.</p>
+    <a class="aa-btn aa-btn-grad" href="{{ url_for('main.search') }}">Find ARMY</a>
+</div>
+{% endif %}
+</div>
+{% endblock %}

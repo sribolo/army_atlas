@@ -1,0 +1,2699 @@
+{
+  "_comment": "Real-world BTS tour data (group tour + solo/OT7 tours). Loaded by `flask seed-concerts` (see app/cli.py). starts_at times default to 18:00 local where the source schedule had no published time — update if official times are confirmed. Hiroshima Green Arena (Wings Tour) is a best-guess venue name/coords, lower confidence than the rest.",
+  "_schema": {
+    "tours": [
+      {
+        "name": "string, unique — the natural key used to match an existing tour",
+        "concerts": [
+          {
+            "name": "string",
+            "venue": "string",
+            "city": "string",
+            "country": "string",
+            "latitude": "float",
+            "longitude": "float",
+            "starts_at": "ISO 8601 datetime in UTC, e.g. 2025-09-12T10:00:00Z",
+            "timezone": "IANA timezone name for the venue, e.g. Asia/Seoul"
+          }
+        ]
+      }
+    ]
+  },
+  "tours": [
+    {
+      "name": "Arirang World Tour",
+      "concerts": [
+        {
+          "name": "Arirang World Tour: Goyang Night 1",
+          "venue": "Goyang Stadium",
+          "city": "Goyang",
+          "country": "South Korea",
+          "latitude": 37.6688,
+          "longitude": 126.7728,
+          "starts_at": "2026-04-09T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Arirang World Tour: Goyang Night 2",
+          "venue": "Goyang Stadium",
+          "city": "Goyang",
+          "country": "South Korea",
+          "latitude": 37.6688,
+          "longitude": 126.7728,
+          "starts_at": "2026-04-11T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Arirang World Tour: Goyang Night 3",
+          "venue": "Goyang Stadium",
+          "city": "Goyang",
+          "country": "South Korea",
+          "latitude": 37.6688,
+          "longitude": 126.7728,
+          "starts_at": "2026-04-12T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Arirang World Tour: Tokyo Night 1",
+          "venue": "Tokyo Dome",
+          "city": "Tokyo",
+          "country": "Japan",
+          "latitude": 35.7056,
+          "longitude": 139.7519,
+          "starts_at": "2026-04-17T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Arirang World Tour: Tokyo Night 2",
+          "venue": "Tokyo Dome",
+          "city": "Tokyo",
+          "country": "Japan",
+          "latitude": 35.7056,
+          "longitude": 139.7519,
+          "starts_at": "2026-04-18T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Arirang World Tour: Tampa Night 1",
+          "venue": "Raymond James Stadium",
+          "city": "Tampa",
+          "country": "United States",
+          "latitude": 27.9759,
+          "longitude": -82.5033,
+          "starts_at": "2026-04-25T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Tampa Night 2",
+          "venue": "Raymond James Stadium",
+          "city": "Tampa",
+          "country": "United States",
+          "latitude": 27.9759,
+          "longitude": -82.5033,
+          "starts_at": "2026-04-26T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Tampa Night 3",
+          "venue": "Raymond James Stadium",
+          "city": "Tampa",
+          "country": "United States",
+          "latitude": 27.9759,
+          "longitude": -82.5033,
+          "starts_at": "2026-04-28T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: El Paso Night 1",
+          "venue": "Sun Bowl Stadium",
+          "city": "El Paso",
+          "country": "United States",
+          "latitude": 31.7757,
+          "longitude": -106.4744,
+          "starts_at": "2026-05-03T00:00:00Z",
+          "timezone": "America/Denver"
+        },
+        {
+          "name": "Arirang World Tour: El Paso Night 2",
+          "venue": "Sun Bowl Stadium",
+          "city": "El Paso",
+          "country": "United States",
+          "latitude": 31.7757,
+          "longitude": -106.4744,
+          "starts_at": "2026-05-04T00:00:00Z",
+          "timezone": "America/Denver"
+        },
+        {
+          "name": "Arirang World Tour: Mexico City Night 1",
+          "venue": "Estadio GNP Seguros",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "latitude": 19.4033,
+          "longitude": -99.0975,
+          "starts_at": "2026-05-08T00:00:00Z",
+          "timezone": "America/Mexico_City"
+        },
+        {
+          "name": "Arirang World Tour: Mexico City Night 2",
+          "venue": "Estadio GNP Seguros",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "latitude": 19.4033,
+          "longitude": -99.0975,
+          "starts_at": "2026-05-10T00:00:00Z",
+          "timezone": "America/Mexico_City"
+        },
+        {
+          "name": "Arirang World Tour: Mexico City Night 3",
+          "venue": "Estadio GNP Seguros",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "latitude": 19.4033,
+          "longitude": -99.0975,
+          "starts_at": "2026-05-11T00:00:00Z",
+          "timezone": "America/Mexico_City"
+        },
+        {
+          "name": "Arirang World Tour: Stanford Night 1",
+          "venue": "Stanford Stadium",
+          "city": "Stanford",
+          "country": "United States",
+          "latitude": 37.4347,
+          "longitude": -122.161,
+          "starts_at": "2026-05-17T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Stanford Night 2",
+          "venue": "Stanford Stadium",
+          "city": "Stanford",
+          "country": "United States",
+          "latitude": 37.4347,
+          "longitude": -122.161,
+          "starts_at": "2026-05-18T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Stanford Night 3",
+          "venue": "Stanford Stadium",
+          "city": "Stanford",
+          "country": "United States",
+          "latitude": 37.4347,
+          "longitude": -122.161,
+          "starts_at": "2026-05-20T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Las Vegas Night 1",
+          "venue": "Allegiant Stadium",
+          "city": "Las Vegas",
+          "country": "United States",
+          "latitude": 36.0909,
+          "longitude": -115.1833,
+          "starts_at": "2026-05-24T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Las Vegas Night 2",
+          "venue": "Allegiant Stadium",
+          "city": "Las Vegas",
+          "country": "United States",
+          "latitude": 36.0909,
+          "longitude": -115.1833,
+          "starts_at": "2026-05-25T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Las Vegas Night 3",
+          "venue": "Allegiant Stadium",
+          "city": "Las Vegas",
+          "country": "United States",
+          "latitude": 36.0909,
+          "longitude": -115.1833,
+          "starts_at": "2026-05-28T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Las Vegas Night 4",
+          "venue": "Allegiant Stadium",
+          "city": "Las Vegas",
+          "country": "United States",
+          "latitude": 36.0909,
+          "longitude": -115.1833,
+          "starts_at": "2026-05-29T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Busan Night 1",
+          "venue": "Busan Asiad Main Stadium",
+          "city": "Busan",
+          "country": "South Korea",
+          "latitude": 35.1903,
+          "longitude": 129.0589,
+          "starts_at": "2026-06-12T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Arirang World Tour: Busan Night 2",
+          "venue": "Busan Asiad Main Stadium",
+          "city": "Busan",
+          "country": "South Korea",
+          "latitude": 35.1903,
+          "longitude": 129.0589,
+          "starts_at": "2026-06-13T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Arirang World Tour: Madrid Night 1",
+          "venue": "Riyadh Air Metropolitano",
+          "city": "Madrid",
+          "country": "Spain",
+          "latitude": 40.4362,
+          "longitude": -3.5995,
+          "starts_at": "2026-06-26T16:00:00Z",
+          "timezone": "Europe/Madrid"
+        },
+        {
+          "name": "Arirang World Tour: Madrid Night 2",
+          "venue": "Riyadh Air Metropolitano",
+          "city": "Madrid",
+          "country": "Spain",
+          "latitude": 40.4362,
+          "longitude": -3.5995,
+          "starts_at": "2026-06-27T16:00:00Z",
+          "timezone": "Europe/Madrid"
+        },
+        {
+          "name": "Arirang World Tour: Brussels Night 1",
+          "venue": "King Baudouin Stadium",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": 50.8958,
+          "longitude": 4.3319,
+          "starts_at": "2026-07-01T16:00:00Z",
+          "timezone": "Europe/Brussels"
+        },
+        {
+          "name": "Arirang World Tour: Brussels Night 2",
+          "venue": "King Baudouin Stadium",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": 50.8958,
+          "longitude": 4.3319,
+          "starts_at": "2026-07-02T16:00:00Z",
+          "timezone": "Europe/Brussels"
+        },
+        {
+          "name": "Arirang World Tour: London Night 1",
+          "venue": "Tottenham Hotspur Stadium",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.6043,
+          "longitude": -0.0664,
+          "starts_at": "2026-07-06T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Arirang World Tour: London Night 2",
+          "venue": "Tottenham Hotspur Stadium",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.6043,
+          "longitude": -0.0664,
+          "starts_at": "2026-07-07T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Arirang World Tour: Munich Night 1",
+          "venue": "Allianz Arena",
+          "city": "Munich",
+          "country": "Germany",
+          "latitude": 48.2188,
+          "longitude": 11.6247,
+          "starts_at": "2026-07-11T16:00:00Z",
+          "timezone": "Europe/Berlin"
+        },
+        {
+          "name": "Arirang World Tour: Munich Night 2",
+          "venue": "Allianz Arena",
+          "city": "Munich",
+          "country": "Germany",
+          "latitude": 48.2188,
+          "longitude": 11.6247,
+          "starts_at": "2026-07-12T16:00:00Z",
+          "timezone": "Europe/Berlin"
+        },
+        {
+          "name": "Arirang World Tour: Paris Night 1",
+          "venue": "Stade de France",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.9244,
+          "longitude": 2.3601,
+          "starts_at": "2026-07-17T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Arirang World Tour: Paris Night 2",
+          "venue": "Stade de France",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.9244,
+          "longitude": 2.3601,
+          "starts_at": "2026-07-18T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Arirang World Tour: East Rutherford Night 1",
+          "venue": "MetLife Stadium",
+          "city": "East Rutherford",
+          "country": "United States",
+          "latitude": 40.8135,
+          "longitude": -74.0745,
+          "starts_at": "2026-08-01T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: East Rutherford Night 2",
+          "venue": "MetLife Stadium",
+          "city": "East Rutherford",
+          "country": "United States",
+          "latitude": 40.8135,
+          "longitude": -74.0745,
+          "starts_at": "2026-08-02T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Foxborough Night 1",
+          "venue": "Gillette Stadium",
+          "city": "Foxborough",
+          "country": "United States",
+          "latitude": 42.0909,
+          "longitude": -71.2643,
+          "starts_at": "2026-08-05T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Foxborough Night 2",
+          "venue": "Gillette Stadium",
+          "city": "Foxborough",
+          "country": "United States",
+          "latitude": 42.0909,
+          "longitude": -71.2643,
+          "starts_at": "2026-08-06T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Baltimore Night 1",
+          "venue": "M&T Bank Stadium",
+          "city": "Baltimore",
+          "country": "United States",
+          "latitude": 39.278,
+          "longitude": -76.6227,
+          "starts_at": "2026-08-10T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Baltimore Night 2",
+          "venue": "M&T Bank Stadium",
+          "city": "Baltimore",
+          "country": "United States",
+          "latitude": 39.278,
+          "longitude": -76.6227,
+          "starts_at": "2026-08-11T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Arirang World Tour: Arlington Night 1",
+          "venue": "AT&T Stadium",
+          "city": "Arlington",
+          "country": "United States",
+          "latitude": 32.7473,
+          "longitude": -97.0945,
+          "starts_at": "2026-08-15T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Arirang World Tour: Arlington Night 2",
+          "venue": "AT&T Stadium",
+          "city": "Arlington",
+          "country": "United States",
+          "latitude": 32.7473,
+          "longitude": -97.0945,
+          "starts_at": "2026-08-16T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Arirang World Tour: Toronto Night 1",
+          "venue": "Rogers Stadium",
+          "city": "Toronto",
+          "country": "Canada",
+          "latitude": 43.6289,
+          "longitude": -79.4132,
+          "starts_at": "2026-08-22T22:00:00Z",
+          "timezone": "America/Toronto"
+        },
+        {
+          "name": "Arirang World Tour: Toronto Night 2",
+          "venue": "Rogers Stadium",
+          "city": "Toronto",
+          "country": "Canada",
+          "latitude": 43.6289,
+          "longitude": -79.4132,
+          "starts_at": "2026-08-23T22:00:00Z",
+          "timezone": "America/Toronto"
+        },
+        {
+          "name": "Arirang World Tour: Chicago Night 1",
+          "venue": "Soldier Field",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8623,
+          "longitude": -87.6167,
+          "starts_at": "2026-08-27T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Arirang World Tour: Chicago Night 2",
+          "venue": "Soldier Field",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8623,
+          "longitude": -87.6167,
+          "starts_at": "2026-08-28T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Arirang World Tour: Los Angeles Night 1",
+          "venue": "SoFi Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9535,
+          "longitude": -118.3392,
+          "starts_at": "2026-09-02T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Los Angeles Night 2",
+          "venue": "SoFi Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9535,
+          "longitude": -118.3392,
+          "starts_at": "2026-09-03T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Los Angeles Night 3",
+          "venue": "SoFi Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9535,
+          "longitude": -118.3392,
+          "starts_at": "2026-09-06T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Los Angeles Night 4",
+          "venue": "SoFi Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9535,
+          "longitude": -118.3392,
+          "starts_at": "2026-09-07T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Arirang World Tour: Bogota Night 1",
+          "venue": "Estadio El Campin",
+          "city": "Bogota",
+          "country": "Colombia",
+          "latitude": 4.6459,
+          "longitude": -74.0784,
+          "starts_at": "2026-10-02T23:00:00Z",
+          "timezone": "America/Bogota"
+        },
+        {
+          "name": "Arirang World Tour: Bogota Night 2",
+          "venue": "Estadio El Campin",
+          "city": "Bogota",
+          "country": "Colombia",
+          "latitude": 4.6459,
+          "longitude": -74.0784,
+          "starts_at": "2026-10-03T23:00:00Z",
+          "timezone": "America/Bogota"
+        },
+        {
+          "name": "Arirang World Tour: Lima Night 1",
+          "venue": "Estadio San Marcos",
+          "city": "Lima",
+          "country": "Peru",
+          "latitude": -12.0592,
+          "longitude": -77.0842,
+          "starts_at": "2026-10-07T23:00:00Z",
+          "timezone": "America/Lima"
+        },
+        {
+          "name": "Arirang World Tour: Lima Night 2",
+          "venue": "Estadio San Marcos",
+          "city": "Lima",
+          "country": "Peru",
+          "latitude": -12.0592,
+          "longitude": -77.0842,
+          "starts_at": "2026-10-09T23:00:00Z",
+          "timezone": "America/Lima"
+        },
+        {
+          "name": "Arirang World Tour: Lima Night 3",
+          "venue": "Estadio San Marcos",
+          "city": "Lima",
+          "country": "Peru",
+          "latitude": -12.0592,
+          "longitude": -77.0842,
+          "starts_at": "2026-10-10T23:00:00Z",
+          "timezone": "America/Lima"
+        },
+        {
+          "name": "Arirang World Tour: Santiago Night 1",
+          "venue": "Estadio Nacional",
+          "city": "Santiago",
+          "country": "Chile",
+          "latitude": -33.4897,
+          "longitude": -70.6031,
+          "starts_at": "2026-10-14T21:00:00Z",
+          "timezone": "America/Santiago"
+        },
+        {
+          "name": "Arirang World Tour: Santiago Night 2",
+          "venue": "Estadio Nacional",
+          "city": "Santiago",
+          "country": "Chile",
+          "latitude": -33.4897,
+          "longitude": -70.6031,
+          "starts_at": "2026-10-16T21:00:00Z",
+          "timezone": "America/Santiago"
+        },
+        {
+          "name": "Arirang World Tour: Santiago Night 3",
+          "venue": "Estadio Nacional",
+          "city": "Santiago",
+          "country": "Chile",
+          "latitude": -33.4897,
+          "longitude": -70.6031,
+          "starts_at": "2026-10-17T21:00:00Z",
+          "timezone": "America/Santiago"
+        },
+        {
+          "name": "Arirang World Tour: Buenos Aires Night 1",
+          "venue": "Estadio Unico de La Plata",
+          "city": "Buenos Aires",
+          "country": "Argentina",
+          "latitude": -34.9509,
+          "longitude": -57.9605,
+          "starts_at": "2026-10-21T21:00:00Z",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        {
+          "name": "Arirang World Tour: Buenos Aires Night 2",
+          "venue": "Estadio Unico de La Plata",
+          "city": "Buenos Aires",
+          "country": "Argentina",
+          "latitude": -34.9509,
+          "longitude": -57.9605,
+          "starts_at": "2026-10-23T21:00:00Z",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        {
+          "name": "Arirang World Tour: Buenos Aires Night 3",
+          "venue": "Estadio Unico de La Plata",
+          "city": "Buenos Aires",
+          "country": "Argentina",
+          "latitude": -34.9509,
+          "longitude": -57.9605,
+          "starts_at": "2026-10-24T21:00:00Z",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        {
+          "name": "Arirang World Tour: São Paulo Night 1",
+          "venue": "Estadio do MorumBIS",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.6003,
+          "longitude": -46.7196,
+          "starts_at": "2026-10-28T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Arirang World Tour: São Paulo Night 2",
+          "venue": "Estadio do MorumBIS",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.6003,
+          "longitude": -46.7196,
+          "starts_at": "2026-10-30T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Arirang World Tour: São Paulo Night 3",
+          "venue": "Estadio do MorumBIS",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.6003,
+          "longitude": -46.7196,
+          "starts_at": "2026-10-31T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Arirang World Tour: Kaohsiung Night 1",
+          "venue": "Kaohsiung National Stadium",
+          "city": "Kaohsiung",
+          "country": "Taiwan",
+          "latitude": 22.7539,
+          "longitude": 120.3467,
+          "starts_at": "2026-11-19T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Arirang World Tour: Kaohsiung Night 2",
+          "venue": "Kaohsiung National Stadium",
+          "city": "Kaohsiung",
+          "country": "Taiwan",
+          "latitude": 22.7539,
+          "longitude": 120.3467,
+          "starts_at": "2026-11-21T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Arirang World Tour: Kaohsiung Night 3",
+          "venue": "Kaohsiung National Stadium",
+          "city": "Kaohsiung",
+          "country": "Taiwan",
+          "latitude": 22.7539,
+          "longitude": 120.3467,
+          "starts_at": "2026-11-22T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Arirang World Tour: Bangkok Night 1",
+          "venue": "Rajamangala National Stadium",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.7649,
+          "longitude": 100.6238,
+          "starts_at": "2026-12-03T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Arirang World Tour: Bangkok Night 2",
+          "venue": "Rajamangala National Stadium",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.7649,
+          "longitude": 100.6238,
+          "starts_at": "2026-12-05T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Arirang World Tour: Bangkok Night 3",
+          "venue": "Rajamangala National Stadium",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.7649,
+          "longitude": 100.6238,
+          "starts_at": "2026-12-06T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Arirang World Tour: Kuala Lumpur Night 1",
+          "venue": "TM Stadium Nasional",
+          "city": "Kuala Lumpur",
+          "country": "Malaysia",
+          "latitude": 3.0546,
+          "longitude": 101.6923,
+          "starts_at": "2026-12-12T10:00:00Z",
+          "timezone": "Asia/Kuala_Lumpur"
+        },
+        {
+          "name": "Arirang World Tour: Kuala Lumpur Night 2",
+          "venue": "TM Stadium Nasional",
+          "city": "Kuala Lumpur",
+          "country": "Malaysia",
+          "latitude": 3.0546,
+          "longitude": 101.6923,
+          "starts_at": "2026-12-13T10:00:00Z",
+          "timezone": "Asia/Kuala_Lumpur"
+        },
+        {
+          "name": "Arirang World Tour: Singapore Night 1",
+          "venue": "National Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3033,
+          "longitude": 103.8748,
+          "starts_at": "2026-12-17T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Arirang World Tour: Singapore Night 2",
+          "venue": "National Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3033,
+          "longitude": 103.8748,
+          "starts_at": "2026-12-19T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Arirang World Tour: Singapore Night 3",
+          "venue": "National Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3033,
+          "longitude": 103.8748,
+          "starts_at": "2026-12-20T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Arirang World Tour: Singapore Night 4",
+          "venue": "National Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3033,
+          "longitude": 103.8748,
+          "starts_at": "2026-12-22T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Arirang World Tour: Jakarta Night 1",
+          "venue": "Gelora Bung Karno Main Stadium",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.2188,
+          "longitude": 106.8022,
+          "starts_at": "2026-12-26T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "Arirang World Tour: Jakarta Night 2",
+          "venue": "Gelora Bung Karno Main Stadium",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.2188,
+          "longitude": 106.8022,
+          "starts_at": "2026-12-27T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "Arirang World Tour: Melbourne Night 1",
+          "venue": "Marvel Stadium",
+          "city": "Melbourne",
+          "country": "Australia",
+          "latitude": -37.8164,
+          "longitude": 144.9475,
+          "starts_at": "2027-02-10T07:00:00Z",
+          "timezone": "Australia/Melbourne"
+        },
+        {
+          "name": "Arirang World Tour: Melbourne Night 2",
+          "venue": "Marvel Stadium",
+          "city": "Melbourne",
+          "country": "Australia",
+          "latitude": -37.8164,
+          "longitude": 144.9475,
+          "starts_at": "2027-02-12T07:00:00Z",
+          "timezone": "Australia/Melbourne"
+        },
+        {
+          "name": "Arirang World Tour: Melbourne Night 3",
+          "venue": "Marvel Stadium",
+          "city": "Melbourne",
+          "country": "Australia",
+          "latitude": -37.8164,
+          "longitude": 144.9475,
+          "starts_at": "2027-02-13T07:00:00Z",
+          "timezone": "Australia/Melbourne"
+        },
+        {
+          "name": "Arirang World Tour: Sydney Night 1",
+          "venue": "Accor Stadium",
+          "city": "Sydney",
+          "country": "Australia",
+          "latitude": -33.847,
+          "longitude": 151.0634,
+          "starts_at": "2027-02-20T07:00:00Z",
+          "timezone": "Australia/Sydney"
+        },
+        {
+          "name": "Arirang World Tour: Sydney Night 2",
+          "venue": "Accor Stadium",
+          "city": "Sydney",
+          "country": "Australia",
+          "latitude": -33.847,
+          "longitude": 151.0634,
+          "starts_at": "2027-02-21T07:00:00Z",
+          "timezone": "Australia/Sydney"
+        },
+        {
+          "name": "Arirang World Tour: Hong Kong Night 1",
+          "venue": "Kai Tak Stadium",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.321,
+          "longitude": 114.201,
+          "starts_at": "2027-03-04T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Arirang World Tour: Hong Kong Night 2",
+          "venue": "Kai Tak Stadium",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.321,
+          "longitude": 114.201,
+          "starts_at": "2027-03-06T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Arirang World Tour: Hong Kong Night 3",
+          "venue": "Kai Tak Stadium",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.321,
+          "longitude": 114.201,
+          "starts_at": "2027-03-07T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Arirang World Tour: Bulacan Night 1",
+          "venue": "Philippine Sports Stadium",
+          "city": "Bulacan",
+          "country": "Philippines",
+          "latitude": 14.856,
+          "longitude": 121.0304,
+          "starts_at": "2027-03-13T10:00:00Z",
+          "timezone": "Asia/Manila"
+        },
+        {
+          "name": "Arirang World Tour: Bulacan Night 2",
+          "venue": "Philippine Sports Stadium",
+          "city": "Bulacan",
+          "country": "Philippines",
+          "latitude": 14.856,
+          "longitude": 121.0304,
+          "starts_at": "2027-03-14T10:00:00Z",
+          "timezone": "Asia/Manila"
+        }
+      ]
+    },
+    {
+      "name": "#RUNSEOKJIN_EP.TOUR",
+      "concerts": [
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Goyang Night 1",
+          "venue": "Goyang Auxiliary Stadium",
+          "city": "Goyang",
+          "country": "South Korea",
+          "latitude": 37.6688,
+          "longitude": 126.7728,
+          "starts_at": "2025-06-28T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Goyang Night 2",
+          "venue": "Goyang Auxiliary Stadium",
+          "city": "Goyang",
+          "country": "South Korea",
+          "latitude": 37.6688,
+          "longitude": 126.7728,
+          "starts_at": "2025-06-29T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Chiba Night 1",
+          "venue": "Makuhari Messe International Exhibition Hall 4-6",
+          "city": "Chiba",
+          "country": "Japan",
+          "latitude": 35.647,
+          "longitude": 140.0326,
+          "starts_at": "2025-07-05T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Chiba Night 2",
+          "venue": "Makuhari Messe International Exhibition Hall 4-6",
+          "city": "Chiba",
+          "country": "Japan",
+          "latitude": 35.647,
+          "longitude": 140.0326,
+          "starts_at": "2025-07-06T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Osaka Night 1",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2025-07-12T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Osaka Night 2",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2025-07-13T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Anaheim Night 1",
+          "venue": "Honda Center",
+          "city": "Anaheim",
+          "country": "United States",
+          "latitude": 33.8078,
+          "longitude": -117.8767,
+          "starts_at": "2025-07-18T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Anaheim Night 2",
+          "venue": "Honda Center",
+          "city": "Anaheim",
+          "country": "United States",
+          "latitude": 33.8078,
+          "longitude": -117.8767,
+          "starts_at": "2025-07-19T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Dallas Night 1",
+          "venue": "American Airlines Center",
+          "city": "Dallas",
+          "country": "United States",
+          "latitude": 32.7905,
+          "longitude": -96.8103,
+          "starts_at": "2025-07-22T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Dallas Night 2",
+          "venue": "American Airlines Center",
+          "city": "Dallas",
+          "country": "United States",
+          "latitude": 32.7905,
+          "longitude": -96.8103,
+          "starts_at": "2025-07-23T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Tampa Night 1",
+          "venue": "Amalie Arena",
+          "city": "Tampa",
+          "country": "United States",
+          "latitude": 27.9427,
+          "longitude": -82.4518,
+          "starts_at": "2025-07-26T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Tampa Night 2",
+          "venue": "Amalie Arena",
+          "city": "Tampa",
+          "country": "United States",
+          "latitude": 27.9427,
+          "longitude": -82.4518,
+          "starts_at": "2025-07-27T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Newark Night 1",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2025-07-30T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Newark Night 2",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2025-07-31T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: London Night 1",
+          "venue": "The O2",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.503,
+          "longitude": 0.0032,
+          "starts_at": "2025-08-05T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: London Night 2",
+          "venue": "The O2",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.503,
+          "longitude": 0.0032,
+          "starts_at": "2025-08-06T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Amsterdam Night 1",
+          "venue": "Ziggo Dome",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": 52.3132,
+          "longitude": 4.9382,
+          "starts_at": "2025-08-09T16:00:00Z",
+          "timezone": "Europe/Amsterdam"
+        },
+        {
+          "name": "#RUNSEOKJIN_EP.TOUR: Amsterdam Night 2",
+          "venue": "Ziggo Dome",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": 52.3132,
+          "longitude": 4.9382,
+          "starts_at": "2025-08-10T16:00:00Z",
+          "timezone": "Europe/Amsterdam"
+        }
+      ]
+    },
+    {
+      "name": "Hope on the Stage Tour",
+      "concerts": [
+        {
+          "name": "Hope on the Stage Tour: Seoul Night 1",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2025-02-28T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Hope on the Stage Tour: Seoul Night 2",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2025-03-01T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Hope on the Stage Tour: Seoul Night 3",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2025-03-02T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Hope on the Stage Tour: Brooklyn Night 1",
+          "venue": "Barclays Center",
+          "city": "Brooklyn",
+          "country": "United States",
+          "latitude": 40.6826,
+          "longitude": -73.9754,
+          "starts_at": "2025-03-13T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Hope on the Stage Tour: Brooklyn Night 2",
+          "venue": "Barclays Center",
+          "city": "Brooklyn",
+          "country": "United States",
+          "latitude": 40.6826,
+          "longitude": -73.9754,
+          "starts_at": "2025-03-14T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Hope on the Stage Tour: Rosemont Night 1",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2025-03-17T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Hope on the Stage Tour: Rosemont Night 2",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2025-03-18T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Hope on the Stage Tour: Mexico City Night 1",
+          "venue": "Palacio de los Deportes",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "latitude": 19.4046,
+          "longitude": -99.0987,
+          "starts_at": "2025-03-23T00:00:00Z",
+          "timezone": "America/Mexico_City"
+        },
+        {
+          "name": "Hope on the Stage Tour: Mexico City Night 2",
+          "venue": "Palacio de los Deportes",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "latitude": 19.4046,
+          "longitude": -99.0987,
+          "starts_at": "2025-03-24T00:00:00Z",
+          "timezone": "America/Mexico_City"
+        },
+        {
+          "name": "Hope on the Stage Tour: San Antonio Night 1",
+          "venue": "Frost Bank Center",
+          "city": "San Antonio",
+          "country": "United States",
+          "latitude": 29.4269,
+          "longitude": -98.4375,
+          "starts_at": "2025-03-26T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Hope on the Stage Tour: San Antonio Night 2",
+          "venue": "Frost Bank Center",
+          "city": "San Antonio",
+          "country": "United States",
+          "latitude": 29.4269,
+          "longitude": -98.4375,
+          "starts_at": "2025-03-27T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Hope on the Stage Tour: Oakland Night 1",
+          "venue": "Oakland Arena",
+          "city": "Oakland",
+          "country": "United States",
+          "latitude": 37.7502,
+          "longitude": -122.2011,
+          "starts_at": "2025-04-01T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Hope on the Stage Tour: Oakland Night 2",
+          "venue": "Oakland Arena",
+          "city": "Oakland",
+          "country": "United States",
+          "latitude": 37.7502,
+          "longitude": -122.2011,
+          "starts_at": "2025-04-02T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Hope on the Stage Tour: Los Angeles Night 1",
+          "venue": "BMO Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.011,
+          "longitude": -118.2846,
+          "starts_at": "2025-04-05T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Hope on the Stage Tour: Los Angeles Night 2",
+          "venue": "BMO Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.011,
+          "longitude": -118.2846,
+          "starts_at": "2025-04-07T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Hope on the Stage Tour: Manila Night 1",
+          "venue": "SM Mall of Asia Arena",
+          "city": "Manila",
+          "country": "Philippines",
+          "latitude": 14.5352,
+          "longitude": 120.9829,
+          "starts_at": "2025-04-12T10:00:00Z",
+          "timezone": "Asia/Manila"
+        },
+        {
+          "name": "Hope on the Stage Tour: Manila Night 2",
+          "venue": "SM Mall of Asia Arena",
+          "city": "Manila",
+          "country": "Philippines",
+          "latitude": 14.5352,
+          "longitude": 120.9829,
+          "starts_at": "2025-04-13T10:00:00Z",
+          "timezone": "Asia/Manila"
+        },
+        {
+          "name": "Hope on the Stage Tour: Saitama Night 1",
+          "venue": "Saitama Super Arena",
+          "city": "Saitama",
+          "country": "Japan",
+          "latitude": 35.8969,
+          "longitude": 139.6303,
+          "starts_at": "2025-04-19T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Hope on the Stage Tour: Saitama Night 2",
+          "venue": "Saitama Super Arena",
+          "city": "Saitama",
+          "country": "Japan",
+          "latitude": 35.8969,
+          "longitude": 139.6303,
+          "starts_at": "2025-04-20T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Hope on the Stage Tour: Singapore Night 1",
+          "venue": "Singapore Indoor Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3006,
+          "longitude": 103.8746,
+          "starts_at": "2025-04-26T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Hope on the Stage Tour: Singapore Night 2",
+          "venue": "Singapore Indoor Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3006,
+          "longitude": 103.8746,
+          "starts_at": "2025-04-27T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Hope on the Stage Tour: Jakarta Night 1",
+          "venue": "Indonesia Arena, GBK",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.2181,
+          "longitude": 106.8036,
+          "starts_at": "2025-05-03T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "Hope on the Stage Tour: Jakarta Night 2",
+          "venue": "Indonesia Arena, GBK",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.2181,
+          "longitude": 106.8036,
+          "starts_at": "2025-05-04T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "Hope on the Stage Tour: Bangkok Night 1",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2025-05-10T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Hope on the Stage Tour: Bangkok Night 2",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2025-05-11T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Hope on the Stage Tour: Macau Night 1",
+          "venue": "Galaxy Arena",
+          "city": "Macau",
+          "country": "Macau",
+          "latitude": 22.147,
+          "longitude": 113.554,
+          "starts_at": "2025-05-17T10:00:00Z",
+          "timezone": "Asia/Macau"
+        },
+        {
+          "name": "Hope on the Stage Tour: Macau Night 2",
+          "venue": "Galaxy Arena",
+          "city": "Macau",
+          "country": "Macau",
+          "latitude": 22.147,
+          "longitude": 113.554,
+          "starts_at": "2025-05-18T10:00:00Z",
+          "timezone": "Asia/Macau"
+        },
+        {
+          "name": "Hope on the Stage Tour: Taipei Night 1",
+          "venue": "NTSU Arena (Linkou Arena)",
+          "city": "Taipei",
+          "country": "Taiwan",
+          "latitude": 25.0778,
+          "longitude": 121.3908,
+          "starts_at": "2025-05-24T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Hope on the Stage Tour: Taipei Night 2",
+          "venue": "NTSU Arena (Linkou Arena)",
+          "city": "Taipei",
+          "country": "Taiwan",
+          "latitude": 25.0778,
+          "longitude": 121.3908,
+          "starts_at": "2025-05-25T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Hope on the Stage Tour: Osaka Night 1",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2025-05-31T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Hope on the Stage Tour: Osaka Night 2",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2025-06-01T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        }
+      ]
+    },
+    {
+      "name": "D-DAY Tour",
+      "concerts": [
+        {
+          "name": "D-DAY Tour: Belmont Park Night 1",
+          "venue": "UBS Arena",
+          "city": "Belmont Park",
+          "country": "United States",
+          "latitude": 40.723,
+          "longitude": -73.5875,
+          "starts_at": "2023-04-26T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "D-DAY Tour: Belmont Park Night 2",
+          "venue": "UBS Arena",
+          "city": "Belmont Park",
+          "country": "United States",
+          "latitude": 40.723,
+          "longitude": -73.5875,
+          "starts_at": "2023-04-27T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "D-DAY Tour: Newark Night 1",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2023-04-29T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "D-DAY Tour: Rosemont Night 1",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2023-05-03T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "D-DAY Tour: Rosemont Night 2",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2023-05-05T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "D-DAY Tour: Rosemont Night 3",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2023-05-06T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "D-DAY Tour: Los Angeles Night 1",
+          "venue": "Kia Forum",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9581,
+          "longitude": -118.3417,
+          "starts_at": "2023-05-11T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "D-DAY Tour: Los Angeles Night 2",
+          "venue": "Kia Forum",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9581,
+          "longitude": -118.3417,
+          "starts_at": "2023-05-12T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "D-DAY Tour: Los Angeles Night 3",
+          "venue": "Kia Forum",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 33.9581,
+          "longitude": -118.3417,
+          "starts_at": "2023-05-15T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "D-DAY Tour: Oakland Night 1",
+          "venue": "Oakland Arena",
+          "city": "Oakland",
+          "country": "United States",
+          "latitude": 37.7502,
+          "longitude": -122.2011,
+          "starts_at": "2023-05-17T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "D-DAY Tour: Oakland Night 2",
+          "venue": "Oakland Arena",
+          "city": "Oakland",
+          "country": "United States",
+          "latitude": 37.7502,
+          "longitude": -122.2011,
+          "starts_at": "2023-05-18T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "D-DAY Tour: Jakarta Night 1",
+          "venue": "Indonesia Convention Exhibition (ICE BSD) Hall 5-6",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.302,
+          "longitude": 106.653,
+          "starts_at": "2023-05-26T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "D-DAY Tour: Jakarta Night 2",
+          "venue": "Indonesia Convention Exhibition (ICE BSD) Hall 5-6",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.302,
+          "longitude": 106.653,
+          "starts_at": "2023-05-27T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "D-DAY Tour: Jakarta Night 3",
+          "venue": "Indonesia Convention Exhibition (ICE BSD) Hall 5-6",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.302,
+          "longitude": 106.653,
+          "starts_at": "2023-05-28T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "D-DAY Tour: Kanagawa Night 1",
+          "venue": "PIA Arena MM",
+          "city": "Kanagawa",
+          "country": "Japan",
+          "latitude": 35.4568,
+          "longitude": 139.6328,
+          "starts_at": "2023-06-02T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "D-DAY Tour: Kanagawa Night 2",
+          "venue": "PIA Arena MM",
+          "city": "Kanagawa",
+          "country": "Japan",
+          "latitude": 35.4568,
+          "longitude": 139.6328,
+          "starts_at": "2023-06-03T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "D-DAY Tour: Kanagawa Night 3",
+          "venue": "PIA Arena MM",
+          "city": "Kanagawa",
+          "country": "Japan",
+          "latitude": 35.4568,
+          "longitude": 139.6328,
+          "starts_at": "2023-06-04T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "D-DAY Tour: Bangkok Night 1",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2023-06-09T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "D-DAY Tour: Bangkok Night 2",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2023-06-10T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "D-DAY Tour: Bangkok Night 3",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2023-06-11T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "D-DAY Tour: Singapore Night 1",
+          "venue": "Singapore Indoor Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3006,
+          "longitude": 103.8746,
+          "starts_at": "2023-06-16T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "D-DAY Tour: Singapore Night 2",
+          "venue": "Singapore Indoor Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3006,
+          "longitude": 103.8746,
+          "starts_at": "2023-06-17T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "D-DAY Tour: Singapore Night 3",
+          "venue": "Singapore Indoor Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3006,
+          "longitude": 103.8746,
+          "starts_at": "2023-06-18T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "D-DAY Tour: Seoul Night 1",
+          "venue": "Jamsil Indoor Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.515,
+          "longitude": 127.073,
+          "starts_at": "2023-06-24T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "D-DAY Tour: Seoul Night 2",
+          "venue": "Jamsil Indoor Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.515,
+          "longitude": 127.073,
+          "starts_at": "2023-06-25T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "D-DAY Tour: Seoul (The Final) Night 1",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2023-08-04T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "D-DAY Tour: Seoul (The Final) Night 2",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2023-08-05T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "D-DAY Tour: Seoul (The Final) Night 3",
+          "venue": "KSPO Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5206,
+          "longitude": 127.1268,
+          "starts_at": "2023-08-06T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        }
+      ]
+    },
+    {
+      "name": "Love Yourself Tour: Speak Yourself",
+      "concerts": [
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Los Angeles Night 1",
+          "venue": "Rose Bowl Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.1613,
+          "longitude": -118.1676,
+          "starts_at": "2019-05-05T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Los Angeles Night 2",
+          "venue": "Rose Bowl Stadium",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.1613,
+          "longitude": -118.1676,
+          "starts_at": "2019-05-06T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Chicago Night 1",
+          "venue": "Soldier Field",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8623,
+          "longitude": -87.6167,
+          "starts_at": "2019-05-11T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Chicago Night 2",
+          "venue": "Soldier Field",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8623,
+          "longitude": -87.6167,
+          "starts_at": "2019-05-12T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: New Jersey Night 1",
+          "venue": "MetLife Stadium",
+          "city": "New Jersey",
+          "country": "United States",
+          "latitude": 40.8135,
+          "longitude": -74.0745,
+          "starts_at": "2019-05-18T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: New Jersey Night 2",
+          "venue": "MetLife Stadium",
+          "city": "New Jersey",
+          "country": "United States",
+          "latitude": 40.8135,
+          "longitude": -74.0745,
+          "starts_at": "2019-05-19T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: São Paulo Night 1",
+          "venue": "Allianz Parque",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.5275,
+          "longitude": -46.6784,
+          "starts_at": "2019-05-25T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: São Paulo Night 2",
+          "venue": "Allianz Parque",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.5275,
+          "longitude": -46.6784,
+          "starts_at": "2019-05-26T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: London Night 1",
+          "venue": "Wembley Stadium",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.556,
+          "longitude": -0.2795,
+          "starts_at": "2019-06-01T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: London Night 2",
+          "venue": "Wembley Stadium",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.556,
+          "longitude": -0.2795,
+          "starts_at": "2019-06-02T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Paris Night 1",
+          "venue": "Stade de France",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.9244,
+          "longitude": 2.3601,
+          "starts_at": "2019-06-07T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Paris Night 2",
+          "venue": "Stade de France",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.9244,
+          "longitude": 2.3601,
+          "starts_at": "2019-06-08T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Osaka Night 1",
+          "venue": "Yanmar Stadium Nagai",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6152,
+          "longitude": 135.5188,
+          "starts_at": "2019-07-06T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Osaka Night 2",
+          "venue": "Yanmar Stadium Nagai",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6152,
+          "longitude": 135.5188,
+          "starts_at": "2019-07-07T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Shizuoka Night 1",
+          "venue": "Shizuoka Stadium Ecopa",
+          "city": "Shizuoka",
+          "country": "Japan",
+          "latitude": 34.8014,
+          "longitude": 137.9689,
+          "starts_at": "2019-07-13T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Shizuoka Night 2",
+          "venue": "Shizuoka Stadium Ecopa",
+          "city": "Shizuoka",
+          "country": "Japan",
+          "latitude": 34.8014,
+          "longitude": 137.9689,
+          "starts_at": "2019-07-14T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Riyadh Night 1",
+          "venue": "King Fahd International Stadium",
+          "city": "Riyadh",
+          "country": "Saudi Arabia",
+          "latitude": 24.7136,
+          "longitude": 46.7223,
+          "starts_at": "2019-10-11T15:00:00Z",
+          "timezone": "Asia/Riyadh"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Seoul Night 1",
+          "venue": "Olympic Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5155,
+          "longitude": 127.073,
+          "starts_at": "2019-10-26T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Seoul Night 2",
+          "venue": "Olympic Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5155,
+          "longitude": 127.073,
+          "starts_at": "2019-10-27T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Love Yourself Tour: Speak Yourself: Seoul Night 3",
+          "venue": "Olympic Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5155,
+          "longitude": 127.073,
+          "starts_at": "2019-10-29T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        }
+      ]
+    },
+    {
+      "name": "Love Yourself Tour",
+      "concerts": [
+        {
+          "name": "Love Yourself Tour: Seoul Night 1",
+          "venue": "Olympic Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5155,
+          "longitude": 127.073,
+          "starts_at": "2018-08-25T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Love Yourself Tour: Seoul Night 2",
+          "venue": "Olympic Stadium",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.5155,
+          "longitude": 127.073,
+          "starts_at": "2018-08-26T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Love Yourself Tour: Los Angeles Night 1",
+          "venue": "Staples Center",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.043,
+          "longitude": -118.2673,
+          "starts_at": "2018-09-06T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Los Angeles Night 2",
+          "venue": "Staples Center",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.043,
+          "longitude": -118.2673,
+          "starts_at": "2018-09-07T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Los Angeles Night 3",
+          "venue": "Staples Center",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.043,
+          "longitude": -118.2673,
+          "starts_at": "2018-09-09T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Los Angeles Night 4",
+          "venue": "Staples Center",
+          "city": "Los Angeles",
+          "country": "United States",
+          "latitude": 34.043,
+          "longitude": -118.2673,
+          "starts_at": "2018-09-10T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Oakland Night 1",
+          "venue": "Oracle Arena",
+          "city": "Oakland",
+          "country": "United States",
+          "latitude": 37.7502,
+          "longitude": -122.2011,
+          "starts_at": "2018-09-13T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Love Yourself Tour: Fort Worth Night 1",
+          "venue": "Fort Worth Convention Center",
+          "city": "Fort Worth",
+          "country": "United States",
+          "latitude": 32.7532,
+          "longitude": -97.3306,
+          "starts_at": "2018-09-15T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: Fort Worth Night 2",
+          "venue": "Fort Worth Convention Center",
+          "city": "Fort Worth",
+          "country": "United States",
+          "latitude": 32.7532,
+          "longitude": -97.3306,
+          "starts_at": "2018-09-20T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: Hamilton Night 1",
+          "venue": "FirstOntario Centre",
+          "city": "Hamilton",
+          "country": "Canada",
+          "latitude": 43.2599,
+          "longitude": -79.8726,
+          "starts_at": "2018-09-22T22:00:00Z",
+          "timezone": "America/Toronto"
+        },
+        {
+          "name": "Love Yourself Tour: Hamilton Night 2",
+          "venue": "FirstOntario Centre",
+          "city": "Hamilton",
+          "country": "Canada",
+          "latitude": 43.2599,
+          "longitude": -79.8726,
+          "starts_at": "2018-09-23T22:00:00Z",
+          "timezone": "America/Toronto"
+        },
+        {
+          "name": "Love Yourself Tour: Newark Night 1",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2018-09-28T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Love Yourself Tour: Newark Night 2",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2018-09-29T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Love Yourself Tour: Chicago Night 1",
+          "venue": "United Center",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8807,
+          "longitude": -87.6742,
+          "starts_at": "2018-10-02T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: Chicago Night 2",
+          "venue": "United Center",
+          "city": "Chicago",
+          "country": "United States",
+          "latitude": 41.8807,
+          "longitude": -87.6742,
+          "starts_at": "2018-10-03T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Love Yourself Tour: New York Night 1",
+          "venue": "Citi Field",
+          "city": "New York",
+          "country": "United States",
+          "latitude": 40.7571,
+          "longitude": -73.8458,
+          "starts_at": "2018-10-06T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Love Yourself Tour: London Night 1",
+          "venue": "The O2 Arena",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.503,
+          "longitude": 0.0032,
+          "starts_at": "2018-10-09T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Love Yourself Tour: London Night 2",
+          "venue": "The O2 Arena",
+          "city": "London",
+          "country": "United Kingdom",
+          "latitude": 51.503,
+          "longitude": 0.0032,
+          "starts_at": "2018-10-10T17:00:00Z",
+          "timezone": "Europe/London"
+        },
+        {
+          "name": "Love Yourself Tour: Amsterdam Night 1",
+          "venue": "Ziggo Dome",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": 52.3132,
+          "longitude": 4.9382,
+          "starts_at": "2018-10-13T16:00:00Z",
+          "timezone": "Europe/Amsterdam"
+        },
+        {
+          "name": "Love Yourself Tour: Berlin Night 1",
+          "venue": "Mercedes-Benz Arena",
+          "city": "Berlin",
+          "country": "Germany",
+          "latitude": 52.5058,
+          "longitude": 13.4433,
+          "starts_at": "2018-10-16T16:00:00Z",
+          "timezone": "Europe/Berlin"
+        },
+        {
+          "name": "Love Yourself Tour: Berlin Night 2",
+          "venue": "Mercedes-Benz Arena",
+          "city": "Berlin",
+          "country": "Germany",
+          "latitude": 52.5058,
+          "longitude": 13.4433,
+          "starts_at": "2018-10-17T16:00:00Z",
+          "timezone": "Europe/Berlin"
+        },
+        {
+          "name": "Love Yourself Tour: Paris Night 1",
+          "venue": "AccorHotels Arena",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.8388,
+          "longitude": 2.3788,
+          "starts_at": "2018-10-19T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Love Yourself Tour: Paris Night 2",
+          "venue": "AccorHotels Arena",
+          "city": "Paris",
+          "country": "France",
+          "latitude": 48.8388,
+          "longitude": 2.3788,
+          "starts_at": "2018-10-20T16:00:00Z",
+          "timezone": "Europe/Paris"
+        },
+        {
+          "name": "Love Yourself Tour: Tokyo Night 1",
+          "venue": "Tokyo Dome",
+          "city": "Tokyo",
+          "country": "Japan",
+          "latitude": 35.7056,
+          "longitude": 139.7519,
+          "starts_at": "2018-11-13T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Tokyo Night 2",
+          "venue": "Tokyo Dome",
+          "city": "Tokyo",
+          "country": "Japan",
+          "latitude": 35.7056,
+          "longitude": 139.7519,
+          "starts_at": "2018-11-14T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Osaka Night 1",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2018-11-21T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Osaka Night 2",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2018-11-23T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Osaka Night 3",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2018-11-24T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Taoyuan Night 1",
+          "venue": "Taoyuan International Baseball Stadium",
+          "city": "Taoyuan",
+          "country": "Taiwan",
+          "latitude": 24.9536,
+          "longitude": 121.3021,
+          "starts_at": "2018-12-08T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Love Yourself Tour: Taoyuan Night 2",
+          "venue": "Taoyuan International Baseball Stadium",
+          "city": "Taoyuan",
+          "country": "Taiwan",
+          "latitude": 24.9536,
+          "longitude": 121.3021,
+          "starts_at": "2018-12-09T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Love Yourself Tour: Nagoya Night 1",
+          "venue": "Nagoya Dome",
+          "city": "Nagoya",
+          "country": "Japan",
+          "latitude": 35.1855,
+          "longitude": 136.9457,
+          "starts_at": "2019-01-12T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Nagoya Night 2",
+          "venue": "Nagoya Dome",
+          "city": "Nagoya",
+          "country": "Japan",
+          "latitude": 35.1855,
+          "longitude": 136.9457,
+          "starts_at": "2019-01-13T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Singapore Night 1",
+          "venue": "Singapore National Stadium",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": 1.3033,
+          "longitude": 103.8748,
+          "starts_at": "2019-01-19T10:00:00Z",
+          "timezone": "Asia/Singapore"
+        },
+        {
+          "name": "Love Yourself Tour: Fukuoka Night 1",
+          "venue": "Fukuoka Yafuoku! Dome",
+          "city": "Fukuoka",
+          "country": "Japan",
+          "latitude": 33.5951,
+          "longitude": 130.3619,
+          "starts_at": "2019-02-16T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Fukuoka Night 2",
+          "venue": "Fukuoka Yafuoku! Dome",
+          "city": "Fukuoka",
+          "country": "Japan",
+          "latitude": 33.5951,
+          "longitude": 130.3619,
+          "starts_at": "2019-02-17T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Love Yourself Tour: Hong Kong Night 1",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2019-03-20T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Love Yourself Tour: Hong Kong Night 2",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2019-03-21T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Love Yourself Tour: Hong Kong Night 3",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2019-03-23T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Love Yourself Tour: Hong Kong Night 4",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2019-03-24T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Love Yourself Tour: Bangkok Night 1",
+          "venue": "Rajamangala National Stadium",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.7649,
+          "longitude": 100.6238,
+          "starts_at": "2019-04-06T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Love Yourself Tour: Bangkok Night 2",
+          "venue": "Rajamangala National Stadium",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.7649,
+          "longitude": 100.6238,
+          "starts_at": "2019-04-07T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        }
+      ]
+    },
+    {
+      "name": "Wings Tour",
+      "concerts": [
+        {
+          "name": "Wings Tour: Seoul Night 1",
+          "venue": "Gocheok Sky Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.4982,
+          "longitude": 126.8672,
+          "starts_at": "2017-02-18T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Wings Tour: Seoul Night 2",
+          "venue": "Gocheok Sky Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.4982,
+          "longitude": 126.8672,
+          "starts_at": "2017-02-19T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Wings Tour: Santiago Night 1",
+          "venue": "Movistar Arena",
+          "city": "Santiago",
+          "country": "Chile",
+          "latitude": -33.4641,
+          "longitude": -70.6274,
+          "starts_at": "2017-03-11T21:00:00Z",
+          "timezone": "America/Santiago"
+        },
+        {
+          "name": "Wings Tour: Santiago Night 2",
+          "venue": "Movistar Arena",
+          "city": "Santiago",
+          "country": "Chile",
+          "latitude": -33.4641,
+          "longitude": -70.6274,
+          "starts_at": "2017-03-12T21:00:00Z",
+          "timezone": "America/Santiago"
+        },
+        {
+          "name": "Wings Tour: São Paulo Night 1",
+          "venue": "Citibank Hall",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.5967,
+          "longitude": -46.6847,
+          "starts_at": "2017-03-19T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Wings Tour: São Paulo Night 2",
+          "venue": "Citibank Hall",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "latitude": -23.5967,
+          "longitude": -46.6847,
+          "starts_at": "2017-03-20T21:00:00Z",
+          "timezone": "America/Sao_Paulo"
+        },
+        {
+          "name": "Wings Tour: Newark Night 1",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2017-03-23T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Wings Tour: Newark Night 2",
+          "venue": "Prudential Center",
+          "city": "Newark",
+          "country": "United States",
+          "latitude": 40.7336,
+          "longitude": -74.171,
+          "starts_at": "2017-03-24T22:00:00Z",
+          "timezone": "America/New_York"
+        },
+        {
+          "name": "Wings Tour: Rosemont Night 1",
+          "venue": "Allstate Arena",
+          "city": "Rosemont",
+          "country": "United States",
+          "latitude": 42.0359,
+          "longitude": -87.8848,
+          "starts_at": "2017-03-29T23:00:00Z",
+          "timezone": "America/Chicago"
+        },
+        {
+          "name": "Wings Tour: Anaheim Night 1",
+          "venue": "Honda Center",
+          "city": "Anaheim",
+          "country": "United States",
+          "latitude": 33.8078,
+          "longitude": -117.8767,
+          "starts_at": "2017-04-02T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Wings Tour: Anaheim Night 2",
+          "venue": "Honda Center",
+          "city": "Anaheim",
+          "country": "United States",
+          "latitude": 33.8078,
+          "longitude": -117.8767,
+          "starts_at": "2017-04-03T01:00:00Z",
+          "timezone": "America/Los_Angeles"
+        },
+        {
+          "name": "Wings Tour: Bangkok Night 1",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2017-04-22T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Wings Tour: Bangkok Night 2",
+          "venue": "Impact Arena",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "latitude": 13.9147,
+          "longitude": 100.5601,
+          "starts_at": "2017-04-23T11:00:00Z",
+          "timezone": "Asia/Bangkok"
+        },
+        {
+          "name": "Wings Tour: Jakarta Night 1",
+          "venue": "Indonesia Convention Exhibition (ICE BSD) Hall 5-6",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "latitude": -6.302,
+          "longitude": 106.653,
+          "starts_at": "2017-04-29T11:00:00Z",
+          "timezone": "Asia/Jakarta"
+        },
+        {
+          "name": "Wings Tour: Manila Night 1",
+          "venue": "Mall of Asia Arena",
+          "city": "Manila",
+          "country": "Philippines",
+          "latitude": 14.5352,
+          "longitude": 120.9829,
+          "starts_at": "2017-05-06T10:00:00Z",
+          "timezone": "Asia/Manila"
+        },
+        {
+          "name": "Wings Tour: Manila Night 2",
+          "venue": "Mall of Asia Arena",
+          "city": "Manila",
+          "country": "Philippines",
+          "latitude": 14.5352,
+          "longitude": 120.9829,
+          "starts_at": "2017-05-07T10:00:00Z",
+          "timezone": "Asia/Manila"
+        },
+        {
+          "name": "Wings Tour: Hong Kong Night 1",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2017-05-13T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Wings Tour: Hong Kong Night 2",
+          "venue": "AsiaWorld-Expo Arena",
+          "city": "Hong Kong",
+          "country": "Hong Kong",
+          "latitude": 22.3213,
+          "longitude": 113.9412,
+          "starts_at": "2017-05-14T10:00:00Z",
+          "timezone": "Asia/Hong_Kong"
+        },
+        {
+          "name": "Wings Tour: Sydney Night 1",
+          "venue": "Qudos Bank Arena",
+          "city": "Sydney",
+          "country": "Australia",
+          "latitude": -33.8474,
+          "longitude": 151.0634,
+          "starts_at": "2017-05-26T08:00:00Z",
+          "timezone": "Australia/Sydney"
+        },
+        {
+          "name": "Wings Tour: Osaka Night 1",
+          "venue": "Osaka-jo Hall",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6873,
+          "longitude": 135.5259,
+          "starts_at": "2017-05-30T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Osaka Night 2",
+          "venue": "Osaka-jo Hall",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6873,
+          "longitude": 135.5259,
+          "starts_at": "2017-05-31T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Osaka Night 3",
+          "venue": "Osaka-jo Hall",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6873,
+          "longitude": 135.5259,
+          "starts_at": "2017-06-01T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Hiroshima Night 1",
+          "venue": "Hiroshima Green Arena",
+          "city": "Hiroshima",
+          "country": "Japan",
+          "latitude": 34.3931,
+          "longitude": 132.4596,
+          "starts_at": "2017-06-07T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Nagoya Night 1",
+          "venue": "Nippon Gaishi Hall",
+          "city": "Nagoya",
+          "country": "Japan",
+          "latitude": 35.1256,
+          "longitude": 136.9647,
+          "starts_at": "2017-06-14T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Nagoya Night 2",
+          "venue": "Nippon Gaishi Hall",
+          "city": "Nagoya",
+          "country": "Japan",
+          "latitude": 35.1256,
+          "longitude": 136.9647,
+          "starts_at": "2017-06-15T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Saitama Night 1",
+          "venue": "Saitama Super Arena",
+          "city": "Saitama",
+          "country": "Japan",
+          "latitude": 35.8969,
+          "longitude": 139.6303,
+          "starts_at": "2017-06-20T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Saitama Night 2",
+          "venue": "Saitama Super Arena",
+          "city": "Saitama",
+          "country": "Japan",
+          "latitude": 35.8969,
+          "longitude": 139.6303,
+          "starts_at": "2017-06-21T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Saitama Night 3",
+          "venue": "Saitama Super Arena",
+          "city": "Saitama",
+          "country": "Japan",
+          "latitude": 35.8969,
+          "longitude": 139.6303,
+          "starts_at": "2017-06-22T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Fukuoka Night 1",
+          "venue": "Marine Messe Fukuoka",
+          "city": "Fukuoka",
+          "country": "Japan",
+          "latitude": 33.6392,
+          "longitude": 130.4058,
+          "starts_at": "2017-06-24T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Fukuoka Night 2",
+          "venue": "Marine Messe Fukuoka",
+          "city": "Fukuoka",
+          "country": "Japan",
+          "latitude": 33.6392,
+          "longitude": 130.4058,
+          "starts_at": "2017-06-25T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Sapporo Night 1",
+          "venue": "Makomanai Sekisui Heim Ice Arena",
+          "city": "Sapporo",
+          "country": "Japan",
+          "latitude": 43.0169,
+          "longitude": 141.355,
+          "starts_at": "2017-07-01T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Sapporo Night 2",
+          "venue": "Makomanai Sekisui Heim Ice Arena",
+          "city": "Sapporo",
+          "country": "Japan",
+          "latitude": 43.0169,
+          "longitude": 141.355,
+          "starts_at": "2017-07-02T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Osaka (Special Edition) Night 1",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2017-10-14T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Osaka (Special Edition) Night 2",
+          "venue": "Kyocera Dome Osaka",
+          "city": "Osaka",
+          "country": "Japan",
+          "latitude": 34.6688,
+          "longitude": 135.4761,
+          "starts_at": "2017-10-15T09:00:00Z",
+          "timezone": "Asia/Tokyo"
+        },
+        {
+          "name": "Wings Tour: Taipei Night 1",
+          "venue": "National Taiwan Sport University Multipurpose Gymnasium",
+          "city": "Taipei",
+          "country": "Taiwan",
+          "latitude": 24.9264,
+          "longitude": 121.3199,
+          "starts_at": "2017-10-21T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Wings Tour: Taipei Night 2",
+          "venue": "National Taiwan Sport University Multipurpose Gymnasium",
+          "city": "Taipei",
+          "country": "Taiwan",
+          "latitude": 24.9264,
+          "longitude": 121.3199,
+          "starts_at": "2017-10-22T10:00:00Z",
+          "timezone": "Asia/Taipei"
+        },
+        {
+          "name": "Wings Tour: Macao Night 1",
+          "venue": "Cotai Arena, The Venetian Macao",
+          "city": "Macao",
+          "country": "Macau",
+          "latitude": 22.1466,
+          "longitude": 113.5645,
+          "starts_at": "2017-11-04T10:00:00Z",
+          "timezone": "Asia/Macau"
+        },
+        {
+          "name": "Wings Tour: Seoul (The Final) Night 1",
+          "venue": "Gocheok Sky Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.4982,
+          "longitude": 126.8672,
+          "starts_at": "2017-12-08T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Wings Tour: Seoul (The Final) Night 2",
+          "venue": "Gocheok Sky Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.4982,
+          "longitude": 126.8672,
+          "starts_at": "2017-12-09T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        },
+        {
+          "name": "Wings Tour: Seoul (The Final) Night 3",
+          "venue": "Gocheok Sky Dome",
+          "city": "Seoul",
+          "country": "South Korea",
+          "latitude": 37.4982,
+          "longitude": 126.8672,
+          "starts_at": "2017-12-10T09:00:00Z",
+          "timezone": "Asia/Seoul"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% if query %} — {{ query }}{% endif %} — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <form method="GET" action="{{ url_for('main.search') }}" class="flex-fill">
+        <input type="search" name="q" class="form-control" placeholder="Search concerts, ARMY, #tags" value="{{ query }}">
+    </form>
+</div>
+
+{% if not query %}
+<div class="aa-page-kicker">Recent</div>
+<div class="d-flex gap-2 flex-wrap mb-5">
+    <span class="aa-chip">Las Vegas</span>
+    <span class="aa-chip">Jimin</span>
+    <span class="aa-chip">#Encore</span>
+    <span class="aa-chip">TaeTaeWorld</span>
+</div>
+<div class="aa-page-kicker">🔥 Trending tags</div>
+<div class="d-flex gap-2 flex-wrap mb-5">
+    <span class="aa-pill">#OT7</span>
+    <span class="aa-pill">#PurpleOcean</span>
+    <span class="aa-pill">#Encore</span>
+    <span class="aa-pill">#ARMYBomb</span>
+    <span class="aa-pill">#Soundcheck</span>
+</div>
+<p class="text-secondary">Type something above to search concerts, ARMY, and tags.</p>
+{% elif not (results.concerts or results.tours or results.users or results.tags) %}
+<p class="text-secondary">No results for "{{ query }}".</p>
+{% else %}
+
+{% if results.concerts %}
+<div class="aa-page-kicker">Concerts</div>
+<div class="aa-list-stack mb-4">
+    {% for concert in results.concerts %}
+    <a href="{{ url_for('concerts.concert_detail', concert_id=concert.id) }}" class="aa-list-row">
+        <span class="aa-avatar aa-avatar-grad">{{ concert.country | flag }}</span>
+        <span class="flex-fill">
+            <span class="aa-list-row-title d-block">{{ concert.name }}</span>
+            <span class="aa-list-row-meta">{{ concert.city }}, {{ concert.country }}</span>
+        </span>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if results.tours %}
+<div class="aa-page-kicker">Tours</div>
+<div class="aa-list-stack mb-4">
+    {% for tour in results.tours %}
+    <div class="aa-list-row"><span class="aa-list-row-title">{{ tour.name }}</span></div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if results.users %}
+<div class="aa-page-kicker">ARMY to follow</div>
+<div class="aa-list-stack mb-4">
+    {% for user in results.users %}
+    <a href="{{ url_for('profiles.public_profile', username=user.username) }}" class="aa-list-row">
+        {% if user.profile_image_url %}
+        <img src="{{ user.profile_image_url }}" class="aa-avatar" alt="">
+        {% else %}
+        <span class="aa-avatar aa-avatar-grad">{{ user.username[0] | upper }}</span>
+        {% endif %}
+        <span class="flex-fill">
+            <span class="aa-list-row-title d-block">{{ user.username }}</span>
+            <span class="aa-list-row-meta">{% if user.bias %}Bias: {{ user.bias }}{% else %}ARMY Atlas{% endif %}</span>
+        </span>
+        <span class="aa-btn aa-btn-grad aa-btn-sm">+ Follow</span>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if results.tags %}
+<div class="aa-page-kicker">Tags</div>
+<div class="d-flex gap-2 flex-wrap mb-4">
+    {% for tag in results.tags %}
+    <span class="aa-pill">#{{ tag.name }}</span>
+    {% endfor %}
+</div>
+{% if results.memories %}
+<div class="row g-3 mb-4">
+    {% for memory in results.memories %}
+    <div class="col-md-6">
+        <a href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}" class="aa-card aa-card-hover d-block h-100" style="text-decoration:none;">
+            <div class="p-3">
+                <h3 class="h6 mb-1" style="color:var(--aa-text-hi);">{{ memory.title }}</h3>
+                <p class="mb-0" style="font-size:.82rem;color:var(--aa-muted);">by {{ memory.user.username }} — {{ memory.concert.name }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary mb-4">No memories tagged with a matching tag are visible to you.</p>
+{% endif %}
+{% endif %}
+
+{% endif %}
+</div>
+{% endblock %}

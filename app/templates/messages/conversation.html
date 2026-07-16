@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}{{ other.username }} — Messages — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-message-shell">
+<div class="aa-screen-head" style="border-bottom:1px solid var(--aa-line);padding-bottom:14px;margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;">
+    <a class="aa-back-btn" href="{{ url_for('messages.inbox') }}">←</a>
+    {% if other.profile_image_url %}
+    <img src="{{ other.profile_image_url }}" class="aa-avatar" alt="">
+    {% else %}
+    <span class="aa-avatar aa-avatar-grad">{{ other.username[0] | upper }}</span>
+    {% endif %}
+    <div class="flex-fill">
+        <a href="{{ url_for('profiles.public_profile', username=other.username) }}" class="fw-bold text-light text-decoration-none">{{ other.username }}</a>
+        <div class="aa-list-row-meta">
+            {%- if other.bias %}Bias: {{ other.bias }}{% endif -%}
+            {%- if other.bias and can_send %} · {% endif -%}
+            {%- if can_send %}Friends 💜{% endif -%}
+        </div>
+    </div>
+    <div class="aa-menu-wrap">
+        <button type="button" class="aa-icon-btn" data-menu-trigger aria-label="More options" aria-haspopup="true" aria-expanded="false">•••</button>
+        <div class="aa-menu" data-menu-panel hidden>
+            <a class="aa-menu-item" href="{{ url_for('profiles.public_profile', username=other.username) }}">View Profile</a>
+            {% if can_send %}
+            <form method="POST" action="{{ url_for('social.unfriend', username=other.username) }}"
+                  onsubmit="return confirm('Unfriend {{ other.username }}? You won\'t be able to message each other anymore.');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-menu-item">Unfriend</button>
+            </form>
+            {% endif %}
+            <a class="aa-menu-item aa-menu-item-danger" href="{{ url_for('profiles.report_user', username=other.username) }}">Report {{ other.username }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="aa-chat-log">
+    {% for group in message_groups %}
+    <div class="aa-page-kicker text-center">{{ group.label }}</div>
+    {% for message in group.messages %}
+    <div class="aa-bubble {{ 'me' if message.sender_id == current_user.id else 'them' }}"
+         {% if message.sender_id == current_user.id %}
+         data-message-mine
+         data-message-delete-url="{{ url_for('messages.delete_message', user_id=other.id, message_id=message.id) }}"
+         {% endif %}>
+        <p class="mb-0" style="white-space: pre-wrap;">{{ message.body }}</p>
+        {% if message.image_url %}
+        <img src="{{ message.image_url }}" class="img-fluid rounded mt-2" alt="">
+        {% endif %}
+        {% if message.sender_id == current_user.id %}
+            <span class="aa-mono d-block mt-1" style="font-size:.68rem;color:rgba(255,255,255,.6);">
+                {{ "Read" if message.is_read else "Sent" }} · {{ message.created_at | timeago }}
+            </span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-secondary">No messages yet. Say hi!</p>
+    {% endfor %}
+</div>
+
+{% if messages %}
+<form method="POST" id="message-delete-form" class="visually-hidden">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+</form>
+{% endif %}
+
+{% if can_send %}
+<form method="POST" enctype="multipart/form-data" class="aa-app-form aa-message-composer" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="visually-hidden">{{ form.image(id="message-image-input") }}</div>
+    <div class="d-flex align-items-end gap-2">
+        <label for="message-image-input" class="aa-icon-btn" style="cursor:pointer;" title="Attach photo" aria-label="Attach photo">📎</label>
+        <div class="flex-fill">
+            {{ form.body(class="form-control", placeholder="Message...") }}
+        </div>
+        {{ form.submit(class="aa-btn aa-btn-grad", value="↑", style="width:48px;min-width:48px;border-radius:50%;") }}
+    </div>
+    <p class="aa-mono mt-2 mb-0 d-none" data-message-image-name style="font-size:.72rem;color:var(--aa-lilac);"></p>
+</form>
+{% else %}
+<p class="text-secondary">
+    You're no longer friends with {{ other.username }}, so you can't send new messages. Existing history above is still visible.
+</p>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Long-press one of your own messages to delete it (no persistent
+    // delete icon cluttering every bubble — matches WhatsApp/iMessage).
+    const LONG_PRESS_MS = 550;
+    const deleteForm = document.getElementById("message-delete-form");
+    let pressTimer = null;
+    let pressedBubble = null;
+
+    function cancelPress() {
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+        }
+        if (pressedBubble) {
+            pressedBubble.classList.remove("pressing");
+            pressedBubble = null;
+        }
+    }
+
+    function startPress(bubble) {
+        cancelPress();
+        pressedBubble = bubble;
+        bubble.classList.add("pressing");
+        pressTimer = setTimeout(() => {
+            bubble.classList.remove("pressing");
+            pressTimer = null;
+            if (confirm("Delete this message?")) {
+                deleteForm.action = bubble.dataset.messageDeleteUrl;
+                deleteForm.submit();
+            }
+        }, LONG_PRESS_MS);
+    }
+
+    document.querySelectorAll("[data-message-mine]").forEach((bubble) => {
+        bubble.addEventListener("touchstart", () => startPress(bubble), { passive: true });
+        bubble.addEventListener("touchmove", cancelPress);
+        bubble.addEventListener("touchend", cancelPress);
+        bubble.addEventListener("touchcancel", cancelPress);
+        bubble.addEventListener("mousedown", () => startPress(bubble));
+        bubble.addEventListener("mouseup", cancelPress);
+        bubble.addEventListener("mouseleave", cancelPress);
+        bubble.addEventListener("contextmenu", (event) => event.preventDefault());
+    });
+
+    // "•••" more-options menu
+    const menuTrigger = document.querySelector("[data-menu-trigger]");
+    const menuPanel = document.querySelector("[data-menu-panel]");
+    if (menuTrigger && menuPanel) {
+        menuTrigger.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const isOpen = !menuPanel.hidden;
+            menuPanel.hidden = isOpen;
+            menuTrigger.setAttribute("aria-expanded", String(!isOpen));
+        });
+        document.addEventListener("click", (event) => {
+            if (!menuPanel.hidden && !menuPanel.contains(event.target)) {
+                menuPanel.hidden = true;
+                menuTrigger.setAttribute("aria-expanded", "false");
+            }
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !menuPanel.hidden) {
+                menuPanel.hidden = true;
+                menuTrigger.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+});
+</script>
+{% if can_send %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("message-image-input");
+    const label = document.querySelector("[data-message-image-name]");
+    if (!input || !label) return;
+    input.addEventListener("change", () => {
+        const file = input.files && input.files[0];
+        label.textContent = file ? `📎 ${file.name}` : "";
+        label.classList.toggle("d-none", !file);
+    });
+});
+</script>
+{% endif %}
+{% endblock %}

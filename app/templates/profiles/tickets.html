@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Ticket Wallet — ARMY Atlas{% endblock %}
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+  <div class="aa-page-kicker">🎫 Your collection</div>
+  <h1 class="aa-screen-title mb-2">Ticket<br>Wallet</h1>
+  <p class="aa-screen-subtitle mb-4">{{ concerts | length }} stub{{ "s" if concerts | length != 1 }} collected · every one attended 💜</p>
+
+  {% if concerts %}
+  <div class="aa-list-stack">
+    {% for card in ticket_cards %}
+    {% set concert = card.concert %}
+    <a class="aa-ticket-card{% if card.ticket_art.wallet %} has-art{% endif %}{% if card.ticket_art.theme %} theme-{{ card.ticket_art.theme }}{% endif %}"
+       {% if card.ticket_art.wallet %}style="--aa-ticket-card-image:url('{{ url_for('static', filename='img/tickets/' ~ card.ticket_art.wallet) }}');"{% endif %}
+       href="{{ url_for('profiles.ticket_detail', concert_id=concert.id) }}">
+      <span class="aa-ticket-art{% if card.ticket_art.wallet %} has-image{% endif %}"
+            {% if card.ticket_art.wallet %}style="background-image:url('{{ url_for('static', filename='img/tickets/' ~ card.ticket_art.wallet) }}');"{% endif %}></span>
+      <span>
+        <span class="aa-list-row-title d-block" style="font-size:1rem;">{{ concert.name | upper }}</span>
+        <span class="d-block mt-1" style="font-size:.76rem;">{{ card.artist }}</span>
+        <span class="d-block mt-2" style="font-size:.76rem;color:rgba(255,255,255,.72);">📍 {{ concert.venue }}</span>
+      </span>
+      <span class="aa-ticket-date">
+        <small>{{ concert.starts_at_local.strftime('%b') | upper }}</small>
+        {{ concert.starts_at_local.strftime('%d') }}
+        <small>{{ concert.starts_at_local.strftime('%Y') }}</small>
+        <span class="aa-attended mt-2">Attended</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="aa-card text-center py-5 px-4">
+    <p class="mb-3" style="color:var(--aa-muted);">No ticket stubs yet. Mark a concert as attended to add it here.</p>
+    <a class="aa-btn aa-btn-grad" href="{{ url_for('concerts.list_concerts') }}">Explore the Atlas</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

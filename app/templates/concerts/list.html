@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Concerts — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-tour-page">
+  <div class="aa-page-kicker">💜 The Atlas</div>
+  <h1 class="aa-screen-title mb-2">Tour<br>Atlas</h1>
+  {% if total_concert_count %}
+  <p class="aa-screen-subtitle aa-tour-subtitle">{{ total_concert_count }} shows · every city · every memory</p>
+
+  <div class="aa-card d-flex text-center py-3 px-2 mb-4">
+    <div class="aa-stat flex-fill"><div class="aa-stat-num">{{ upcoming_concert_count }}</div><div class="aa-stat-label">upcoming</div></div>
+    <div class="aa-stat flex-fill"><div class="aa-stat-num">{{ past_concert_count }}</div><div class="aa-stat-label">past</div></div>
+    <div class="aa-stat flex-fill"><div class="aa-stat-num">{{ total_concert_count }}</div><div class="aa-stat-label">total</div></div>
+  </div>
+  {% endif %}
+  <div class="aa-tour-tabs d-flex gap-2">
+    <a class="aa-chip {{ 'active' if current_filter == 'upcoming' }}" href="{{ url_for('concerts.list_concerts', filter='upcoming') }}">Upcoming</a>
+    <a class="aa-chip {{ 'active' if current_filter == 'all' }}" href="{{ url_for('concerts.list_concerts', filter='all') }}">All</a>
+    <a class="aa-chip {{ 'active' if current_filter == 'past' }}" href="{{ url_for('concerts.list_concerts', filter='past') }}">Past</a>
+  </div>
+
+  {% if concert_cards %}
+  <div class="aa-list-stack aa-tour-list">
+    {% for card in concert_cards %}
+    {% set concert = card.concert %}
+    <a href="{{ url_for('concerts.concert_detail', concert_id=concert.id) }}" class="aa-tour-stop-card">
+      <div class="aa-tour-date">
+        <img class="aa-tour-date-overlay" src="{{ url_for('static', filename='img/tours/' ~ card.banner_filename) }}" alt="" aria-hidden="true">
+        <div>{{ concert.starts_at_local.strftime('%b') }}<br>{{ concert.starts_at_local.day }}</div>
+        <small>{{ concert.starts_at_local.strftime('%Y') }}</small>
+      </div>
+      <div class="aa-tour-stop-main">
+        <div class="aa-tour-city">{{ concert.country | flag }} {{ concert.city }}</div>
+        <div class="aa-tour-venue">{{ concert.venue }}</div>
+        <div class="aa-tour-meta">{{ card.night_label | upper }} · {{ concert.country }}</div>
+      </div>
+      <div class="aa-tour-days">
+        {% if card.day_count is none %}
+        {% if card.status == 'TODAY' %}<span class="aa-tour-today-dot"></span>{% endif %}<small>{{ card.status }}</small>
+        {% else %}
+        {{ card.day_count }}<small>{{ card.status }}</small>
+        {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="aa-card text-center py-5 px-4">
+    <p style="color:var(--aa-muted);">
+      {% if current_filter == 'upcoming' %}
+      No upcoming concerts yet.
+      {% elif current_filter == 'past' %}
+      No past concerts yet.
+      {% else %}
+      No concerts yet.
+      {% endif %}
+    </p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

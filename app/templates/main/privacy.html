@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('auth.register') }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">Privacy Policy</h1>
+</div>
+
+<div class="aa-card p-4" style="color:var(--aa-text);line-height:1.6;">
+    <p>ARMY Atlas is an independent fan-made community project created for learning, creativity, and connecting ARMY around the world. It is not affiliated with or endorsed by BIGHIT MUSIC or HYBE.</p>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Information we collect</h2>
+    <p style="color:var(--aa-muted);">To provide the app, we may store:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Your account information (username, email, and an encrypted password).</li>
+        <li>Profile information you choose to share, such as your bio, bias, social links, and profile photo.</li>
+        <li>Memories, comments, posts, and other content you create.</li>
+        <li>Photos and videos you upload (stored securely through Cloudinary).</li>
+    </ul>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">How your information is used</h2>
+    <p style="color:var(--aa-muted);">Your information is only used to:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Create and manage your account.</li>
+        <li>Display your profile and content within the community.</li>
+        <li>Provide app features and improve the project.</li>
+    </ul>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">What we don't do</h2>
+    <p style="color:var(--aa-muted);">We do not:</p>
+    <ul style="color:var(--aa-muted);">
+        <li>Sell your personal information.</li>
+        <li>Use your information for advertising.</li>
+        <li>Share your data with third parties except when required to operate the app (such as secure hosting or media storage).</li>
+    </ul>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Data retention</h2>
+    <p style="color:var(--aa-muted);">ARMY Atlas is a personal learning project. The service, database, or features may be updated, reset, or discontinued without notice.</p>
+
+    <h2 class="h6 mt-4" style="color:var(--aa-text-hi);">Contact</h2>
+    <p style="color:var(--aa-muted);">If you have questions about your data or would like your account removed, please contact the project administrator.</p>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Reset password — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page">
+    <a class="aa-back-btn mb-4" href="{{ url_for('auth.login') }}">←</a>
+
+    <h1 class="aa-screen-title mb-2">Reset your<br>password 🔑</h1>
+    <p class="aa-screen-subtitle mb-4">We'll email you a link to set a new one.</p>
+
+    <form method="POST" class="aa-app-form" novalidate>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.email) }}
+        {{ form.submit(class="aa-btn aa-btn-grad") }}
+    </form>
+
+    <p class="mt-auto pt-4 text-center" style="font-size:.86rem;color:var(--aa-muted);">
+        Remembered it? <a class="fw-bold" href="{{ url_for('auth.login') }}">Log in →</a>
+    </p>
+</div>
+{% endblock %}

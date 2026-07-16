@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}New time capsule — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page">
+        <div class="aa-screen-head">
+            <a class="aa-back-btn" href="{{ url_for('profiles.capsules') }}">←</a>
+            <h1 class="aa-screen-title" style="font-size:1.35rem;">Seal a Capsule</h1>
+        </div>
+        <div class="aa-page-kicker">Private letter</div>
+        <p class="text-secondary mb-4">Once sealed, nobody — not even you — can read this until it unlocks.</p>
+        <form method="POST" class="aa-app-form" novalidate>
+            {{ form.hidden_tag() }}
+            {{ render_field(form.body) }}
+            {{ render_field(form.unlock_years) }}
+            {{ form.submit(class="aa-btn aa-btn-grad") }}
+        </form>
+</div>
+{% endblock %}

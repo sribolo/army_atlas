@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Badges — {{ profile_user.username }} — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('profiles.public_profile', username=profile_user.username) }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">Badges</h1>
+</div>
+
+{% set total_badges = badge_progress | length %}
+{% set earned_pct = ((earned_count / total_badges) * 100) if total_badges else 0 %}
+<div class="aa-card p-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="fw-bold" style="color:var(--aa-text-hi);">{{ earned_count }} of {{ total_badges }} earned</span>
+        <span class="aa-mono" style="font-size:.8rem;color:var(--aa-muted);">{{ earned_pct | round | int }}%</span>
+    </div>
+    <div class="aa-progress">
+        <span style="width:{{ earned_pct }}%;"></span>
+    </div>
+</div>
+
+<div class="row g-3">
+    {% for entry in badge_progress %}
+    <div class="col-6 col-md-3">
+        {% if entry.earned_at %}
+        <div class="aa-badge-tile" title="{{ entry.badge.description }}">
+            <div class="aa-badge-icon">{{ entry.badge.icon }}</div>
+            <div class="fw-bold mt-2" style="font-size:.8rem;color:var(--aa-text-hi);">{{ entry.badge.name }}</div>
+            <div class="mt-1" style="font-size:.72rem;color:var(--aa-muted);">{{ entry.badge.description }}</div>
+            <div class="aa-mono mt-2" style="font-size:.68rem;color:var(--aa-green);">Earned &middot; {{ entry.earned_at.strftime('%b %Y') }}</div>
+        </div>
+        {% else %}
+        <div class="aa-badge-tile locked" title="{{ entry.badge.description }}">
+            <div class="aa-badge-icon">{{ entry.badge.icon }}</div>
+            <div class="fw-bold mt-2" style="font-size:.8rem;color:var(--aa-muted);">{{ entry.badge.name }}</div>
+            <div class="mt-1" style="font-size:.72rem;color:var(--aa-dim);">{{ entry.badge.description }}</div>
+            {% if entry.target > 1 %}
+            <div class="aa-progress mt-2">
+                <span style="width:{{ (entry.current / entry.target * 100) }}%;"></span>
+            </div>
+            <div class="aa-mono mt-1" style="font-size:.66rem;color:var(--aa-dim);">{{ entry.current }} / {{ entry.target }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

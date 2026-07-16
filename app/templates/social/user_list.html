@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ heading }} — {{ profile_user.username }} — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('profiles.public_profile', username=profile_user.username) }}">←</a>
+    <h1 class="aa-screen-title" style="font-size:1.45rem;">{{ heading }}</h1>
+</div>
+
+<div class="aa-seg mb-4">
+    <span class="aa-seg-item active">Friends</span>
+    <a class="aa-seg-item" href="{{ url_for('social.friend_requests') }}">Requests</a>
+    <a class="aa-seg-item" href="{{ url_for('main.search') }}">Find</a>
+</div>
+
+{% if users %}
+<div class="aa-list-stack">
+    {% for user in users %}
+    <a href="{{ url_for('profiles.public_profile', username=user.username) }}" class="aa-list-row">
+        {% if user.profile_image_url %}
+        <img src="{{ user.profile_image_url }}" class="aa-avatar" alt="">
+        {% else %}
+        <span class="aa-avatar aa-avatar-grad">{{ user.username[0] | upper }}</span>
+        {% endif %}
+        <span class="flex-fill">
+            <span class="aa-list-row-title d-block">{{ user.username }}</span>
+            <span class="aa-list-row-meta">{% if user.bias %}Bias: {{ user.bias }}{% else %}ARMY Atlas{% endif %}</span>
+        </span>
+        <span class="aa-btn aa-btn-ghost aa-btn-sm">Message</span>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">Nobody here yet.</p>
+{% endif %}
+</div>
+{% endblock %}

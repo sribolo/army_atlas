@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-home-shell mx-auto">
+
+  {# — Mobile app-style top bar (desktop keeps the collapsed navbar in base.html) — #}
+  <div class="aa-mobile-topbar d-lg-none">
+    <div class="d-flex align-items-center gap-2">
+      <div class="aa-mobile-mark aa-brand-mark" aria-hidden="true">
+        <img src="{{ static_url('img/logo.png') }}" alt="">
+      </div>
+      <span class="aa-mobile-brand aa-display fw-bold">ARMY ATLAS</span>
+    </div>
+    {% if current_user.is_authenticated %}
+    <div class="d-flex align-items-center gap-2">
+      <a class="aa-icon-btn" href="{{ url_for('main.search') }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      </a>
+      <a class="aa-icon-btn" href="{{ url_for('social.notifications') }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+        {% if unread_notification_count %}<span class="aa-bn-badge">{{ unread_notification_count if unread_notification_count < 100 else "99+" }}</span>{% endif %}
+      </a>
+      <a class="aa-icon-btn" href="{{ url_for('messages.inbox') }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        {% if unread_message_count %}<span class="aa-icon-dot"></span>{% endif %}
+      </a>
+    </div>
+    {% else %}
+    <div class="d-flex align-items-center gap-2">
+      <a class="aa-mobile-auth-link" href="{{ url_for('auth.login') }}">Log in</a>
+      <a class="aa-btn aa-btn-grad aa-btn-sm" href="{{ url_for('auth.register') }}">Join 💜</a>
+    </div>
+    {% endif %}
+  </div>
+
+  {# — Hero — #}
+  <div class="aa-home-hero-grid px-3 px-lg-4 pt-4 pt-lg-5 pb-1">
+    <div class="aa-home-hero-copy">
+      {% if current_user.is_authenticated %}
+      <div class="aa-label mb-2">WELCOME BACK, {{ current_user.username | upper }} 💜</div>
+      {% endif %}
+      <div class="aa-display aa-home-title fw-bold">
+        Every concert.<br>Every city.<br><span style="color:var(--aa-lilac);">Every memory.</span>
+      </div>
+      <a href="{{ url_for('memories.new_memory') }}" class="aa-btn aa-btn-grad mt-3 mt-lg-4">Share Your Story 💜</a>
+    </div>
+
+    {# — Stylized map card — #}
+    {% if map_pins %}
+    <div class="aa-map-card aa-home-map mt-3 mt-lg-0">
+      <div class="aa-map-surface">
+        <div style="position:absolute;inset:0;background:linear-gradient(120deg,rgba(155,108,255,.13),transparent 60%);"></div>
+        <svg viewBox="0 0 332 172" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
+          <g fill="rgba(155,108,255,.16)" stroke="rgba(183,148,255,.22)" stroke-width="0.6">
+            <path d="M26,32 C40,24 60,26 78,30 C92,33 98,42 90,50 C96,56 90,66 80,62 C72,68 64,60 66,52 C56,56 48,50 50,42 C40,42 30,40 26,32 Z"/>
+            <path d="M100,22 C108,18 116,24 112,32 C106,38 98,32 100,26 Z"/>
+            <path d="M92,88 C104,82 116,88 116,100 C116,114 108,126 102,138 C98,148 92,150 88,140 C86,128 92,120 88,110 C84,100 84,92 92,88 Z"/>
+            <path d="M148,32 C160,28 172,32 172,42 C172,50 162,50 160,56 C152,58 144,50 148,42 C144,40 144,34 148,32 Z"/>
+            <path d="M156,62 C170,58 184,62 186,74 C188,88 178,98 176,110 C174,122 166,126 162,116 C158,106 162,94 156,86 C150,78 148,66 156,62 Z"/>
+            <path d="M180,30 C204,22 244,24 276,30 C298,34 314,34 308,48 C302,58 284,54 278,62 C268,70 254,66 248,58 C236,62 222,58 218,50 C204,54 190,48 186,40 C180,40 176,34 180,30 Z"/>
+            <path d="M214,58 C222,56 228,62 224,72 C220,82 214,80 212,72 C208,66 208,60 214,58 Z"/>
+            <path d="M300,50 C305,48 309,52 306,58 C303,64 297,60 298,54 Z"/>
+            <path d="M250,82 C260,78 272,82 272,90 C272,98 262,98 256,94 C250,94 244,88 250,82 Z"/>
+            <path d="M276,116 C290,110 308,112 314,124 C318,134 308,140 298,136 C290,140 280,134 280,126 C276,122 272,118 276,116 Z"/>
+          </g>
+          {% for i in range(map_pins | length - 1) %}
+          <path d="M{{ map_pins[i].x }},{{ map_pins[i].y }} Q{{ ((map_pins[i].x + map_pins[i+1].x) / 2) | round(1) }},{{ ([map_pins[i].y, map_pins[i+1].y] | min - 14) | round(1) }} {{ map_pins[i+1].x }},{{ map_pins[i+1].y }}" fill="none" stroke="rgba(183,148,255,.45)" stroke-width="1" stroke-dasharray="2 4" stroke-linecap="round"/>
+          {% endfor %}
+          {% for pin in map_pins %}
+          <a href="{{ url_for('concerts.concert_detail', concert_id=pin.concert.id) }}">
+            <circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="9" fill="{{ pin.fill }}" opacity="0.22"/>
+            <circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="4" fill="{{ pin.fill }}"/>
+          </a>
+          {% endfor %}
+          {% for pin in map_pins %}
+          <circle class="aa-pin-pulse" cx="{{ pin.x }}" cy="{{ pin.y }}" r="4" fill="none" stroke="{{ pin.ring }}" stroke-width="1.5" opacity="0.65">
+            <animate attributeName="r" values="4;28" dur="2.4s" begin="{{ pin.delay }}s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.65;0" dur="2.4s" begin="{{ pin.delay }}s" repeatCount="indefinite"/>
+          </circle>
+          {% endfor %}
+        </svg>
+        <div style="position:absolute;left:14px;bottom:12px;font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:1px;">{{ total_shows }} SHOWS · {{ total_cities }} CITIES</div>
+      </div>
+      {% if next_tour %}
+      <a href="{{ url_for('concerts.list_concerts') }}" class="d-flex justify-content-between align-items-center px-3 py-3" style="text-decoration:none;">
+        <div>
+          <div class="fw-bold" style="font-size:.85rem;color:var(--aa-text-hi);">{{ next_tour.name }}</div>
+          <div style="font-size:.72rem;color:var(--aa-muted);">Browse every stop on the Atlas</div>
+        </div>
+        <div class="fw-bold" style="font-size:.85rem;color:var(--aa-lilac);">Explore →</div>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  {# — Countdown rail — #}
+  {% if upcoming_concerts %}
+  <div class="aa-home-section pt-4 pt-lg-5">
+    <div class="d-flex justify-content-between align-items-baseline px-3 px-lg-4 mb-2 mb-lg-3">
+      <div class="aa-label">⏳ Next on the Tour</div>
+      <a href="{{ url_for('concerts.list_concerts') }}" style="font-size:.72rem;color:var(--aa-muted);">See all</a>
+    </div>
+    <div class="aa-tour-rail d-flex gap-3 px-3 px-lg-4 pb-1">
+      {% for concert in upcoming_concerts %}
+      <a href="{{ url_for('concerts.concert_detail', concert_id=concert.id) }}" class="aa-tour-card-link flex-shrink-0">
+        <div class="p-3" style="border-radius:20px;background:linear-gradient(135deg,rgba(155,108,255,.24),rgba(255,110,199,.12));border:1px solid rgba(183,148,255,.25);">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span style="font-size:.75rem;color:var(--aa-text);">{{ concert.country | flag }} {{ concert.city }}</span>
+            <span class="aa-mono" style="font-size:.6rem;letter-spacing:.05em;color:var(--aa-lavender);">{{ concert.starts_at_local.strftime('%b') }} {{ concert.starts_at_local.day }}</span>
+          </div>
+          <div class="fw-bold text-truncate mb-3" style="font-family:'Unbounded',sans-serif;font-size:.8rem;color:#fff;">{{ concert.venue }}</div>
+          <div class="aa-countdown" data-countdown-target="{{ concert.starts_at_utc_iso }}">
+            <div class="aa-countdown-box"><div class="aa-countdown-num" data-countdown-unit="d">–</div><div class="aa-countdown-label">DAYS</div></div>
+            <div class="aa-countdown-box"><div class="aa-countdown-num" data-countdown-unit="h">–</div><div class="aa-countdown-label">HRS</div></div>
+            <div class="aa-countdown-box accent"><div class="aa-countdown-num" data-countdown-unit="m">–</div><div class="aa-countdown-label">MIN</div></div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {# — Feed preview — #}
+  {% if current_user.is_authenticated %}
+  <div class="aa-home-section pt-4 pb-4 pb-lg-5">
+    <div class="d-flex justify-content-between align-items-baseline px-3 px-lg-4 mb-3">
+      <div class="aa-label">From Your ARMY</div>
+      <a href="{{ url_for('social.feed') }}" style="font-size:.72rem;color:var(--aa-lilac);font-weight:600;">See all →</a>
+    </div>
+    {% if feed_memories %}
+    <div class="aa-feed-grid px-lg-4">
+    {% for memory in feed_memories %}
+    <div class="aa-card mx-3 mb-3 overflow-hidden">
+      <div class="d-flex align-items-center gap-2 p-3">
+        {% if memory.user.profile_image_url %}
+        <img src="{{ memory.user.profile_image_url }}" class="aa-avatar" alt="">
+        {% else %}
+        <span class="aa-avatar aa-avatar-grad">{{ memory.user.username[0] | upper }}</span>
+        {% endif %}
+        <div class="flex-fill">
+          <a href="{{ url_for('profiles.public_profile', username=memory.user.username) }}" class="fw-bold" style="font-size:.82rem;color:var(--aa-text-hi);">{{ memory.user.username }}</a>
+          <div style="font-size:.72rem;color:var(--aa-muted);">{{ memory.concert.country | flag }} {{ memory.concert.name }} · {{ memory.created_at | timeago }}</div>
+        </div>
+      </div>
+      <a href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}" style="text-decoration:none;">
+        {% set images = memory.media | selectattr("media_type.value", "equalto", "image") | list %}
+        {% if images %}
+        <img src="{{ images[0].url }}" alt="" style="width:100%;max-height:220px;object-fit:cover;display:block;">
+        {% else %}
+        <div class="aa-photo-placeholder" style="height:198px;">
+          <div class="aa-photo-placeholder-caption">{{ memory.concert.country | flag }} {{ memory.concert.city }}</div>
+        </div>
+        {% endif %}
+      </a>
+      <div class="d-flex align-items-center gap-3 px-3 pt-3">
+        <span class="d-inline-flex align-items-center gap-2 fw-bold" style="color:var(--aa-muted);font-size:.85rem;"><span style="font-size:1.1rem;">🤍</span>{{ like_counts.get(memory.id, 0) }}</span>
+      </div>
+      <a href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}" class="d-block px-3 pb-3 pt-1" style="text-decoration:none;">
+        <span class="fw-bold" style="font-size:.85rem;color:var(--aa-text-hi);">{{ memory.title }}</span>
+        {% if memory.story %}<div style="font-size:.82rem;color:#c9c0dd;line-height:1.5;margin-top:4px;">{{ memory.story }}</div>{% endif %}
+        {% if memory.tags %}<div class="aa-mono mt-2" style="font-size:.72rem;color:var(--aa-lilac);">{% for tag in memory.tags %}#{{ tag.name }} {% endfor %}</div>{% endif %}
+      </a>
+    </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="aa-card aa-empty-follow-card mx-3 mx-lg-4 text-center py-4 px-3">
+      <p class="mb-2" style="color:var(--aa-muted);font-size:.85rem;">Follow or friend other ARMY to see their memories here.</p>
+      <a href="{{ url_for('main.search') }}" class="aa-btn aa-btn-ghost aa-btn-sm">Find ARMY</a>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

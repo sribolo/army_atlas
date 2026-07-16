@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Friend requests — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <h1 class="aa-screen-title" style="font-size:1.45rem;">ARMY Friends</h1>
+</div>
+
+<div class="aa-seg mb-4">
+    <span class="aa-seg-item">Friends</span>
+    <span class="aa-seg-item active">Requests</span>
+    <a class="aa-seg-item" href="{{ url_for('main.search') }}">Find</a>
+</div>
+
+<div class="aa-page-kicker">Incoming</div>
+{% if incoming %}
+<div class="aa-list-stack mb-4">
+    {% for req in incoming %}
+    <div class="aa-list-row">
+        <span class="aa-avatar aa-avatar-grad">{{ req.sender.username[0] | upper }}</span>
+        <a href="{{ url_for('profiles.public_profile', username=req.sender.username) }}" class="aa-list-row-title flex-fill">{{ req.sender.username }}</a>
+        <div class="d-flex gap-2">
+            <form method="POST" action="{{ url_for('social.accept_friend_request', request_id=req.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-btn aa-btn-grad aa-btn-sm">Accept</button>
+            </form>
+            <form method="POST" action="{{ url_for('social.decline_friend_request', request_id=req.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm">Decline</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary mb-4">No incoming requests.</p>
+{% endif %}
+
+<div class="aa-page-kicker">Outgoing</div>
+{% if outgoing %}
+<div class="aa-list-stack">
+    {% for req in outgoing %}
+    <div class="aa-list-row">
+        <span class="aa-avatar aa-avatar-grad">{{ req.receiver.username[0] | upper }}</span>
+        <a href="{{ url_for('profiles.public_profile', username=req.receiver.username) }}" class="aa-list-row-title flex-fill">{{ req.receiver.username }}</a>
+        <form method="POST" action="{{ url_for('social.cancel_friend_request', request_id=req.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="aa-btn aa-btn-ghost aa-btn-sm">Cancel</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No outgoing requests.</p>
+{% endif %}
+</div>
+{% endblock %}

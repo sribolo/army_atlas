@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Messages — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">Messages</h1>
+    <a class="aa-back-btn" href="{{ url_for('messages.new_message') }}" aria-label="New message" title="New message">✎</a>
+</div>
+
+{% if conversations %}
+<div class="aa-list-stack">
+    {% for convo in conversations %}
+    <a href="{{ url_for('messages.conversation', user_id=convo.partner.id) }}"
+       class="aa-list-row">
+        {% if convo.partner.profile_image_url %}
+        <img src="{{ convo.partner.profile_image_url }}" class="aa-avatar" alt="">
+        {% else %}
+        <span class="aa-avatar aa-avatar-grad">{{ convo.partner.username[0] | upper }}</span>
+        {% endif %}
+        <div class="flex-fill">
+            <strong class="aa-list-row-title">{{ convo.partner.username }}</strong>
+            <p class="mb-0 aa-list-row-meta">
+                {%- if convo.last_message.sender_id == current_user.id -%}You: {%- endif -%}
+                {{ convo.last_message.body[:80] }}{% if convo.last_message.body|length > 80 %}…{% endif %}
+            </p>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-1">
+            <span class="aa-mono" style="font-size:.68rem;color:var(--aa-dim);">{{ convo.last_message.created_at | timeago }}</span>
+            {% if convo.unread_count %}
+            <span class="aa-mono" style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--aa-grad);color:#fff;font-size:.68rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;">{{ convo.unread_count }}</span>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No conversations yet. Message a friend from their profile.</p>
+{% endif %}
+</div>
+{% endblock %}

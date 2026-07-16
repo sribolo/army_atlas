@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Report — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page">
+    <a class="aa-back-btn mb-4" href="{{ cancel_url }}">←</a>
+
+    <h1 class="aa-screen-title mb-2">Report {{ target_label }}</h1>
+    <p class="aa-screen-subtitle mb-4">Tell us what's wrong. Our moderators will review it.</p>
+
+    <form method="POST" class="aa-app-form" novalidate>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.reason) }}
+        <button type="submit" class="aa-btn aa-btn-sm w-100 justify-content-center" style="color:#ff9bb0;border-color:rgba(255,95,174,.4);">Submit report</button>
+    </form>
+
+    <p class="mt-3 text-center" style="font-size:.86rem;color:var(--aa-muted);"><a href="{{ cancel_url }}">Cancel</a></p>
+</div>
+{% endblock %}

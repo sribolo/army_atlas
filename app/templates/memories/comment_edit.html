@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Edit comment — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-auth-page">
+    <a class="aa-back-btn mb-4" href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}">←</a>
+
+    <h1 class="aa-screen-title mb-2">Edit comment</h1>
+    <p class="aa-screen-subtitle mb-4">on <a href="{{ url_for('memories.memory_detail', memory_id=memory.id) }}" style="color:var(--aa-lilac);">{{ memory.title }}</a></p>
+
+    <form method="POST" class="aa-app-form" novalidate>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.body) }}
+        <button type="submit" name="submit" class="aa-btn aa-btn-grad">Save changes</button>
+    </form>
+</div>
+{% endblock %}

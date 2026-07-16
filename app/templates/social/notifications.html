@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications — ARMY Atlas{% endblock %}
+
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+<div class="aa-screen-head">
+    <a class="aa-back-btn" href="{{ url_for('main.index') }}">←</a>
+    <h1 class="aa-screen-title flex-fill" style="font-size:1.45rem;">Notifications</h1>
+    {% if notifications %}
+    <form method="POST" action="{{ url_for('social.mark_all_notifications_read') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-link btn-sm p-0" style="color:var(--aa-lilac);text-decoration:none;">Mark all read</button>
+    </form>
+    {% endif %}
+</div>
+
+{% if notifications %}
+<div class="aa-page-kicker">Today</div>
+<div class="aa-list-stack">
+    {% for notification, text, target_url in notifications %}
+    <form method="POST" action="{{ url_for('social.mark_notification_read', notification_id=notification.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="aa-list-row">
+            <span class="aa-avatar aa-avatar-grad">{{ text[0] | upper }}</span>
+            <span class="flex-fill">
+                <span class="d-block mb-1 {{ 'text-secondary' if notification.is_read else 'text-light' }}">{{ text }}</span>
+                <span class="text-secondary small">{{ notification.created_at | timeago }}</span>
+            </span>
+            {% if not notification.is_read %}<span class="aa-dot" aria-label="Unread"></span>{% endif %}
+        </button>
+    </form>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No notifications yet.</p>
+{% endif %}
+</div>
+{% endblock %}

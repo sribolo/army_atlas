@@ -1,0 +1,39 @@
+{
+  "_comment": "The badge catalog. Loaded by `flask seed-badges` (see app/cli.py). `code` is the natural key BadgeService (app/badges.py) awards against — rename with care, since existing UserBadge rows reference badges by id, not code, but new awards look badges up by code.",
+  "_schema": {
+    "badges": [
+      {
+        "code": "string, unique — matched by BadgeService's rule names",
+        "name": "string — display name",
+        "icon": "string — a single emoji shown next to the name",
+        "description": "string — how the badge is earned"
+      }
+    ]
+  },
+  "badges": [
+    {
+      "code": "first_attendance",
+      "name": "First Concert",
+      "icon": "🎫",
+      "description": "Marked attendance at your first concert."
+    },
+    {
+      "code": "world_traveler",
+      "name": "World Traveler",
+      "icon": "🌍",
+      "description": "Attended a concert outside your home country."
+    },
+    {
+      "code": "concert_veteran",
+      "name": "Concert Veteran",
+      "icon": "🎤",
+      "description": "Attended 5 or more concerts."
+    },
+    {
+      "code": "memory_keeper",
+      "name": "Memory Keeper",
+      "icon": "📸",
+      "description": "Posted 5 or more memories."
+    }
+  ]
+}

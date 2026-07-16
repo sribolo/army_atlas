@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}ARMY Atlas{% endblock %}
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page aa-splash-page">
+  <div class="aa-splash-center">
+    <div class="aa-splash-mark"><img src="{{ static_url('img/logo.png') }}" alt="ARMY Atlas"></div>
+    <h1 class="aa-display aa-splash-title">ARMY<br>ATLAS</h1>
+    <p class="aa-screen-subtitle text-center">Every concert. Every city.<br>Every memory — together.</p>
+  </div>
+  <div class="aa-splash-actions">
+    <a class="aa-btn aa-btn-grad" href="{{ url_for('auth.login') }}">Log In</a>
+    <a class="aa-btn aa-btn-ghost" href="{{ url_for('auth.register') }}">Create Account</a>
+  </div>
+</div>
+{% endblock %}

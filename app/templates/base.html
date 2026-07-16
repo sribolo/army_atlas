@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ARMY Atlas{% endblock %}</title>
+    <link rel="icon" href="{{ static_url('img/logo.png') }}" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ static_url('css/atlas.css') }}" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg d-none d-lg-block">
+        <div class="container flex-wrap gap-2">
+            <a class="navbar-brand aa-brand" href="{{ url_for('main.index') }}" aria-label="ARMY Atlas home">
+                <span class="aa-logo-mark" aria-hidden="true">
+                    <img src="{{ static_url('img/logo.png') }}" alt="">
+                </span>
+                <span>ARMY&nbsp;ATLAS</span>
+            </a>
+            <form method="GET" action="{{ url_for('main.search') }}" class="d-flex flex-grow-1 mx-md-3" style="max-width: 300px;">
+                <input type="search" name="q" class="form-control form-control-sm" placeholder="Search concerts, ARMY, #tags" value="{{ request.args.get('q', '') }}">
+            </form>
+            <div class="d-flex gap-2 flex-wrap align-items-center">
+                {% if current_user.is_authenticated %}
+                <a class="nav-link" href="{{ url_for('social.feed') }}">Feed</a>
+                <a class="nav-link" href="{{ url_for('profiles.capsules') }}">Capsules</a>
+                <a class="nav-link position-relative" href="{{ url_for('messages.inbox') }}">
+                    Messages
+                    {% if unread_message_count %}<span class="badge rounded-pill ms-1" style="background:var(--aa-pink-hot);">{{ unread_message_count }}</span>{% endif %}
+                </a>
+                <a class="nav-link position-relative" href="{{ url_for('social.notifications') }}">
+                    Notifications
+                    {% if unread_notification_count %}<span class="badge rounded-pill ms-1" style="background:var(--aa-pink-hot);">{{ unread_notification_count }}</span>{% endif %}
+                </a>
+                <a class="nav-link position-relative" href="{{ url_for('social.friend_requests') }}">
+                    Friend requests
+                    {% if pending_friend_request_count %}<span class="badge rounded-pill ms-1" style="background:var(--aa-pink-hot);">{{ pending_friend_request_count }}</span>{% endif %}
+                </a>
+                {% if current_user.is_admin %}
+                <a class="nav-link text-warning" href="{{ url_for('admin.reports') }}">Admin</a>
+                {% endif %}
+                <a class="nav-link" href="{{ url_for('profiles.public_profile', username=current_user.username) }}">{{ current_user.username }}</a>
+                <a class="aa-btn aa-btn-ghost aa-btn-sm" href="{{ url_for('auth.logout') }}">Log out</a>
+                {% else %}
+                <a class="nav-link" href="{{ url_for('auth.login') }}">Log in</a>
+                <a class="aa-btn aa-btn-grad aa-btn-sm" href="{{ url_for('auth.register') }}">Join 💜</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="{% block main_class %}container py-5{% endblock %}">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="container">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    {# — Mobile bottom navigation (phones / tablets only) — #}
+    {% set ep = request.endpoint or '' %}
+    <nav class="aa-bottomnav d-lg-none" aria-label="Primary">
+        <a class="aa-bottomnav-item {{ 'active' if ep == 'main.index' }}" href="{{ url_for('main.index') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+            <span>Home</span>
+        </a>
+        <a class="aa-bottomnav-item {{ 'active' if ep.startswith('concerts') }}" href="{{ url_for('concerts.list_concerts') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.2 8.8-1.7 4.7-4.7 1.7 1.7-4.7 4.7-1.7Z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
+            <span>Atlas</span>
+        </a>
+        {% if current_user.is_authenticated %}
+        <a class="aa-bottomnav-item aa-bottomnav-add {{ 'active' if ep in ['memories.new_memory', 'memories.create_memory'] }}" href="{{ url_for('memories.new_memory') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            <span class="visually-hidden">Add</span>
+        </a>
+        <a class="aa-bottomnav-item {{ 'active' if ep in ['profiles.tickets', 'profiles.ticket_detail'] }}" href="{{ url_for('profiles.tickets') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.2a2.3 2.3 0 0 0 0 4.6v2.2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.2a2.3 2.3 0 0 0 0-4.6V8.5Z"/><path d="M9 8.5v11"/><path d="M13 11h3M13 15h3"/></svg>
+            <span>Tickets</span>
+        </a>
+        <a class="aa-bottomnav-item {{ 'active' if ep == 'profiles.public_profile' }}" href="{{ url_for('profiles.public_profile', username=current_user.username) }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            <span>Profile</span>
+        </a>
+        {% else %}
+        <a class="aa-bottomnav-item {{ 'active' if ep.startswith('auth') }}" href="{{ url_for('auth.login') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            <span>Sign In</span>
+        </a>
+        {% endif %}
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ static_url('js/countdown.js') }}"></script>
+    <script src="{{ static_url('js/char-counter.js') }}"></script>
+    <script src="{{ static_url('js/back-link.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

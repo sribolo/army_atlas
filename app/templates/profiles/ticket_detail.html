@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ concert.name }} Ticket — ARMY Atlas{% endblock %}
+{% block main_class %}p-0{% endblock %}
+
+{% block content %}
+<div class="aa-app-page">
+  <a class="aa-back-btn mb-4" href="{{ url_for('profiles.tickets') }}">←</a>
+
+  <article class="aa-full-ticket{% if ticket_art.detail %} has-art{% endif %}{% if ticket_art.theme %} theme-{{ ticket_art.theme }}{% endif %}"
+           {% if ticket_art.detail %}style="--aa-ticket-detail-image:url('{{ url_for('static', filename='img/tickets/' ~ ticket_art.detail) }}');"{% endif %}>
+    <div class="text-center">
+      <div class="aa-display aa-ticket-brand">{{ concert.tour.name.split()[0] | upper }}</div>
+      <div class="aa-page-kicker mt-2">World Tour · ARMY Atlas</div>
+    </div>
+
+    {% if ticket_art.detail %}
+    <div class="aa-ticket-hero-art has-image" style="background-image:url('{{ url_for('static', filename='img/tickets/' ~ ticket_art.detail) }}');"></div>
+    {% else %}
+    <div class="aa-ticket-hero-art">[ {{ concert.name }} key art ]</div>
+    {% endif %}
+
+    <div>
+      <h1 class="aa-screen-title mb-2">{{ concert.name | upper }}</h1>
+      <p class="mb-0" style="color:var(--aa-text-hi);">{{ ticket_artist }}</p>
+    </div>
+
+    <hr class="aa-divider">
+
+    <form method="post" class="aa-ticket-details-form">
+      {{ ticket_form.hidden_tag() }}
+      <div class="row g-4">
+        <div class="col-6">
+          <div class="aa-page-kicker">Date & Time</div>
+          <div class="fw-bold" style="font-size:1.5rem;color:var(--aa-text-hi);">{{ concert.starts_at_local.strftime('%-I:%M %p') }}</div>
+          <div style="color:var(--aa-muted);">{{ concert.starts_at_local.strftime('%b %-d, %Y') }}</div>
+        </div>
+        <div class="col-6 text-end">
+          <div class="aa-page-kicker">Venue</div>
+          <div class="fw-bold" style="font-size:1.05rem;color:var(--aa-text-hi);">{{ concert.venue }}</div>
+          <div style="color:var(--aa-muted);">{{ concert.city }}, {{ concert.country }}</div>
+        </div>
+        <div class="col-6">
+          {{ ticket_form.section.label(class="aa-page-kicker") }}
+          {{ ticket_form.section(class="aa-ticket-detail-input", placeholder="Floor · Standing", autocomplete="off") }}
+        </div>
+        <div class="col-6 text-end">
+          {{ ticket_form.seat.label(class="aa-page-kicker") }}
+          {{ ticket_form.seat(class="aa-ticket-detail-input text-end", placeholder="Gate 7", autocomplete="off") }}
+        </div>
+      </div>
+      <button class="aa-ticket-save-btn" type="submit">{{ ticket_form.submit.label.text }}</button>
+    </form>
+
+    <div class="aa-barcode" aria-hidden="true"></div>
+    <div class="aa-page-kicker text-center">ARG · {{ concert.starts_at_local.strftime('%m%d') }} · {{ concert.country[:2] | upper }}</div>
+  </article>
+</div>
+{% endblock %}
