@@ -12,7 +12,9 @@
     <!-- <button type="submit" form="edit-profile-form" class="aa-back-btn" style="width:auto;border-radius:999px;padding:0 16px;color:var(--aa-lilac);font-weight:700;font-size:.85rem;">Save</button> -->
 </div>
 
-<div class="aa-profile-cover" data-cover-preview style="position:relative;{% if profile_user.cover_image_url %}background:url('{{ profile_user.cover_image_url }}') center/cover no-repeat;{% endif %}">
+<div class="aa-profile-cover" data-cover-preview
+     {% if profile_user.cover_image_url %}data-cover-url="{{ profile_user.cover_image_url }}"{% endif %}
+     style="position:relative;">
     <label for="cover_image" class="aa-icon-btn" style="position:absolute;top:14px;right:14px;cursor:pointer;">📷</label>
 </div>
 
@@ -118,6 +120,11 @@
 {{ super() }}
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  const existingCover = document.querySelector("[data-cover-preview]");
+  if (existingCover && existingCover.dataset.coverUrl) {
+    existingCover.style.background = `url('${existingCover.dataset.coverUrl}') center/cover no-repeat`;
+  }
+
   function previewOnPick(inputId, apply) {
     const input = document.getElementById(inputId);
     if (!input) return;
