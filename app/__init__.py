@@ -23,6 +23,7 @@ def create_app(config_name=None):
     _register_blueprints(app)
     _register_template_filters(app)
     _register_template_globals(app)
+    _register_security_headers(app)
     register_cli(app)
     app.before_request(enforce_active_user)
 
@@ -54,6 +55,18 @@ def _register_template_globals(app):
         return url_for("static", filename=filename, v=version)
 
     app.jinja_env.globals["static_url"] = static_url
+
+
+def _register_security_headers(app):
+    """Block the app's pages from being framed, closing off clickjacking
+    attacks against one-click destructive actions (ban, unfriend, delete).
+    """
+
+    @app.after_request
+    def _set_security_headers(response):
+        response.headers.setdefault("X-Frame-Options", "DENY")
+        response.headers.setdefault("Content-Security-Policy", "frame-ancestors 'none'")
+        return response
 
 
 def _init_extensions(app):
