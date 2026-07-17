@@ -2,17 +2,19 @@ from datetime import datetime, timezone
 
 from flask import render_template, request
 from flask_login import current_user
-from sqlalchemy import or_
+from sqlalchemy import func, or_
 from sqlalchemy.orm import joinedload, selectinload
 
 from app.blueprints.main import main_bp
 from app.extensions import db
 from app.models import Concert, Follow, Friendship, Memory, MemoryLike, MemoryVisibility, Tag, Tour, User
+from app.models.tag import memory_tags
 from app.social_graph import can_view_memory
 
 UPCOMING_CONCERTS_LIMIT = 6
 HOME_FEED_LIMIT = 3
 SEARCH_RESULT_LIMIT = 20
+TRENDING_TAGS_LIMIT = 5
 
 # Cycled per pin on the homepage's stylized map card — purely decorative.
 MAP_PIN_COLORS = [
@@ -130,6 +132,7 @@ def search():
     """
     query = request.args.get("q", "").strip()
     results = {"concerts": [], "tours": [], "users": [], "tags": [], "memories": []}
+    trending_tags = []
 
     if query:
         like_pattern = f"%{query}%"
@@ -167,5 +170,18 @@ def search():
             results["memories"] = [
                 m for m in candidate_memories if can_view_memory(current_user, m)
             ][:SEARCH_RESULT_LIMIT]
+    else:
+        # Popularity by usage across publicly-visible memories only, so a
+        # trending tag can never hint at what's inside a private memory.
+        trending_tags = (
+            db.session.query(Tag, func.count(memory_tags.c.memory_id).label("uses"))
+            .join(memory_tags, Tag.id == memory_tags.c.tag_id)
+            .join(Memory, Memory.id == memory_tags.c.memory_id)
+            .filter(Memory.visibility != MemoryVisibility.PRIVATE)
+            .group_by(Tag.id)
+            .order_by(func.count(memory_tags.c.memory_id).desc())
+            .limit(TRENDING_TAGS_LIMIT)
+            .all()
+        )
 
-    return render_template("main/search.html", query=query, results=results)
+    return render_template("main/search.html", query=query, results=results, trending_tags=trending_tags)

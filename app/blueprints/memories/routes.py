@@ -192,7 +192,7 @@ def create_memory(concert_id):
         memory = Memory(
             user_id=current_user.id,
             concert_id=selected_concert.id,
-            title=form.title.data,
+            title=form.title.data or "",
             seat_section=form.seat_section.data or None,
             story=form.story.data or None,
             visibility=MemoryVisibility(form.visibility.data),
@@ -356,7 +356,7 @@ def create_comment(memory_id):
 
     form = CommentForm()
     if form.validate_on_submit():
-        comment = Comment(user_id=current_user.id, memory_id=memory.id, body=form.body.data)
+        comment = Comment(user_id=current_user.id, memory_id=memory.id, body=form.body.data or "")
         db.session.add(comment)
         NotificationService.notify(
             recipient_id=memory.user_id,
@@ -459,7 +459,7 @@ def report_memory(memory_id):
                 reporter_id=current_user.id,
                 target_type="memory",
                 target_id=memory.id,
-                reason=form.reason.data,
+                reason=form.reason.data or "",
             )
         )
         db.session.commit()
@@ -489,7 +489,7 @@ def report_comment(memory_id, comment_id):
                 reporter_id=current_user.id,
                 target_type="comment",
                 target_id=comment.id,
-                reason=form.reason.data,
+                reason=form.reason.data or "",
             )
         )
         db.session.commit()

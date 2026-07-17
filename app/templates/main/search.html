@@ -23,11 +23,11 @@
 </div>
 <div class="aa-page-kicker">🔥 Trending tags</div>
 <div class="d-flex gap-2 flex-wrap mb-5">
-    <span class="aa-pill">#OT7</span>
-    <span class="aa-pill">#PurpleOcean</span>
-    <span class="aa-pill">#Encore</span>
-    <span class="aa-pill">#ARMYBomb</span>
-    <span class="aa-pill">#Soundcheck</span>
+    {% for tag, uses in trending_tags %}
+    <a href="{{ url_for('main.search', q=tag.name) }}" class="aa-pill">#{{ tag.name }}</a>
+    {% else %}
+    <span class="text-secondary" style="font-size:.85rem;">No trending tags yet — be the first to tag a memory!</span>
+    {% endfor %}
 </div>
 <p class="text-secondary">Type something above to search concerts, ARMY, and tags.</p>
 {% elif not (results.concerts or results.tours or results.users or results.tags) %}

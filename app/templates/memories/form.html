@@ -117,6 +117,8 @@
                         <button type="button" class="aa-tag-choice" data-memory-tag="{{ tag }}">#{{ tag }}</button>
                         {% endfor %}
                     </div>
+                    <input type="text" class="form-control mt-2" placeholder="Add your own tags, separated by commas"
+                           data-memory-tags-text autocomplete="off">
                 </div>
             </div>
 
@@ -190,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const storyInput = root.querySelector("[data-memory-story]");
   const tagsInput = root.querySelector("[data-memory-tags-input]");
   const tagButtons = root.querySelectorAll("[data-memory-tag]");
+  const tagsText = root.querySelector("[data-memory-tags-text]");
   const showSelect = root.querySelector("[data-memory-show-select]");
   const showFlag = root.querySelector(".aa-show-selected-flag");
   const showMain = root.querySelector("[data-memory-show-main]");
@@ -432,16 +435,55 @@ document.addEventListener("DOMContentLoaded", () => {
     syncReview();
   }
 
+  function syncTags() {
+    const presetTags = Array.from(tagButtons)
+      .filter((tagButton) => tagButton.classList.contains("active"))
+      .map((tagButton) => tagButton.dataset.memoryTag);
+    const customTags = (tagsText && tagsText.value || "")
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+    const seen = new Set();
+    const merged = [...presetTags, ...customTags].filter((t) => {
+      const key = t.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    tagsInput.value = merged.join(", ");
+    syncReview();
+  }
+
+  // Pre-filled tags (edit mode): check off any preset chips that match, and
+  // put the rest in the free-text box so nothing from the existing memory
+  // is silently dropped.
+  (function initTags() {
+    const initial = (tagsInput.value || "").split(",").map((t) => t.trim()).filter(Boolean);
+    if (!initial.length) return;
+    const leftover = [];
+    initial.forEach((t) => {
+      const match = Array.from(tagButtons).find(
+        (button) => button.dataset.memoryTag.toLowerCase() === t.toLowerCase()
+      );
+      if (match) {
+        match.classList.add("active");
+      } else {
+        leftover.push(t);
+      }
+    });
+    if (tagsText && leftover.length) tagsText.value = leftover.join(", ");
+  })();
+
   tagButtons.forEach((button) => {
     button.addEventListener("click", () => {
       button.classList.toggle("active");
-      tagsInput.value = Array.from(tagButtons)
-        .filter((tagButton) => tagButton.classList.contains("active"))
-        .map((tagButton) => tagButton.dataset.memoryTag)
-        .join(", ");
-      syncReview();
+      syncTags();
     });
   });
+
+  if (tagsText) {
+    tagsText.addEventListener("input", syncTags);
+  }
 
   if (showSelect) {
     showSelect.addEventListener("change", syncReview);
